@@ -1,0 +1,104 @@
+/* @import url('https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap'); */
+
+body  {
+  margin: 0;
+}
+
+.bannerContainer  {
+  background: lightgray;
+}
+
+.subtitle {
+  font-family: 'Permanent Marker', 'sans-serif' !important; 
+  font-size: 2rem;
+  margin: 0;
+  padding: 0;
+  color: #0275d8;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+  height: 80vh;
+  background: red;
+}
+
+.homePage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: lightgray;
+  height: 100vh;
+  width: 100%;
+}
+
+.logoSection  {
+  margin-bottom: 25px;
+}
+
+#startButton  {
+  width: 480px;
+  height: 50px;
+  font-family: 'Lato';
+  font-weight: 700;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .burgerLogo {
+    animation: App-logo-spin infinite 2s;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  /* from  {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  to  {
+    transform: rotate(360deg);
+  } */
+  from {
+    transform: translateX(-25%);
+  }
+  50%{
+    transform: translateX(25%);
+  }
+  to {
+    transform: translateX(-25%);
+  }
+}
