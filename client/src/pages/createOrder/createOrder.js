@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
-import Banner from '../../components/Banner/Banner';
 import ProductsList from '../../components/ProductsList/ProductsList';
-import ProductCard from '../../components/ProductCard/ProductCard';
-import Grid from '@material-ui/core/Grid';
 import ChoiceBar from '../../components/ChoiceBar/ChoiceBar';
 import ChoiceBar2 from '../../components/ChoiceBar/ChoiceBar2';
 import { categories, products } from '../../store';
-import { withStyles, ThemeProvider } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import Logo from '../../components/Logo/Logo';
 
 const styles = theme => ({
@@ -16,7 +13,7 @@ const styles = theme => ({
         textTransform: 'uppercase',
         paddingTop: 20,
         paddingBottom: 20,
-        borderBottom: '1px dotted black'
+        borderBottom: '1px solid #999'
     }
 })
 

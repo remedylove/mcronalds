@@ -1,33 +1,37 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import CurrencyFormat from 'react-currency-format';
+import { Typography } from '@material-ui/core';
 
 const styles = {
-  CardMedia: {
-    height: "100%",
+  CardHeader: {
+    paddingBottom: '8px'
   },
   card: {
-    background: '#ddd',
+    border: '1px solid #ddd',
+    background: 'transparent',
+    // background: '#eee',
+    borderRadius: '20px'
+  },
+  mediaWrapper: {
+    overflow: 'hidden'
   },
   media: {
     height: 0,
     paddingTop: '40%',
-    paddingBottom: '40%' // 16:9
+    paddingBottom: '40%',
+    height: '25px',
+    transition: '.2s',
+    '&:hover':  {
+      transform: 'scale(1.1)',
+      cursor: 'pointer'
+    },
   },
   add: {
     color: '#0275d8',
@@ -36,60 +40,36 @@ const styles = {
 
 
 const useStyles = makeStyles(styles);
-// const useStyles = makeStyles(theme => ({
-// //   root: {
-// //     maxWidth: 345,
-// //   },
-//   media: {
-//     height: 0,
-//     paddingTop: '56.25%', // 16:9
-//   },
-//   expand: {
-//     transform: 'rotate(0deg)',
-//     marginLeft: 'auto',
-//     transition: theme.transitions.create('transform', {
-//       duration: theme.transitions.duration.shortest,
-//     }),
-//   },
-//   expandOpen: {
-//     transform: 'rotate(180deg)',
-//   },
-//   avatar: {
-//     backgroundColor: red[500],
-//   },
-// }));
 
 const ProductCard = ( { product } ) => {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
 
-  const { id, title } = product;
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+  const { id, title, description } = product;
 
   return (
     <Card className={classes.card}>
       <CardHeader
+        className={classes.CardHeader}
         action={
           <IconButton aria-label="settings">
             <AddCircleIcon className={classes.add} fontSize="large"/>
           </IconButton>
         }
         align="left"
-        title={title}
-        subheader="$5.00"
+        title={<Typography variant="h6">{title}</Typography>}
+        subheader={<CurrencyFormat value={4.99} displayType={'text'} prefix={'$'}/>}
       />
-      <CardMedia
-        className={classes.media}
-        image={require(`../../assets/${id}.jpg`)}
-        title={title}
-      />
+      <div className={classes.mediaWrapper}>
+        <CardMedia
+          className={classes.media}
+          image={require(`../../assets/${id}.jpg`)}
+          title={title}
+        />
+      </div>
       <CardContent>
-        <Typography variant="body2" align="center" color="textSecondary" component="p">
-          {/* {description} */}
-        </Typography>
+        {/* <Button variant="contained" color="primary" align="left">
+          DETAILS
+        </Button> */}
       </CardContent>
     </Card>
   );
