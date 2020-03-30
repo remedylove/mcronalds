@@ -29,7 +29,7 @@ const ProductsList = ({ currentCategory }) => {
                     {value => (
                         value.products.map(product => (
                             !currentCategory || product.category === currentCategory
-                            ?   <Grid item xs={10} sm={5} md={3} justify="center">
+                            ?   <Grid key={product.id} item xs={10} sm={5} md={3}>
                                     <ProductCard key={product.id} product={product} />
                                 </ Grid>
                             : null

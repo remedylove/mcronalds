@@ -68,14 +68,14 @@ const styles = {
 
 const useStyles = makeStyles(styles);
 
-const Logo = ({ cartCounter }) =>    {
+const Logo = () =>    {
     const classes = useStyles();
 
     return(
         <div className={classes.outerContainer}>
             <div className={classes.innerContainer}>
                 <Typography className={classes.title} variant="h4" align="left" >McRonald's</Typography>
-                <Typography className={classes.subtitle} variant="h7" align="left">satisfy your hunger.</Typography>
+                <Typography className={classes.subtitle} variant="h6" align="left">satisfy your hunger.</Typography>
             </div>
             <div className={classes.rowDirection}>
                 <div className={classes.Socials}>
@@ -97,7 +97,7 @@ const Logo = ({ cartCounter }) =>    {
                         </Badge>
                     </IconButton>
                     {/* <IconButton>
-                        {cartCounter}
+                        {}
                         <ShoppingCartIcon fontSize="large" style={{color: 'gray'}}/>
                     </IconButton> */}
                 </div>

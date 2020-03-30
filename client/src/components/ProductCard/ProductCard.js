@@ -8,6 +8,8 @@ import IconButton from '@material-ui/core/IconButton';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import CurrencyFormat from 'react-currency-format';
 import { Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import { ProductConsumer } from '../../context';
 
 const styles = {
   CardHeader: {
@@ -23,7 +25,6 @@ const styles = {
     overflow: 'hidden'
   },
   media: {
-    height: 0,
     paddingTop: '40%',
     paddingBottom: '40%',
     height: '25px',
@@ -44,7 +45,7 @@ const useStyles = makeStyles(styles);
 const ProductCard = ( { product } ) => {
   const classes = useStyles();
 
-  const { id, title, description } = product;
+  const { id, title } = product;
 
   return (
     <Card className={classes.card}>
@@ -59,13 +60,24 @@ const ProductCard = ( { product } ) => {
         title={<Typography variant="h6">{title}</Typography>}
         subheader={<CurrencyFormat value={4.99} displayType={'text'} prefix={'$'}/>}
       />
-      <div className={classes.mediaWrapper}>
-        <CardMedia
-          className={classes.media}
-          image={require(`../../assets/${id}.jpg`)}
-          title={title}
-        />
-      </div>
+      <ProductConsumer>
+        {value => (
+        <div 
+          className={classes.mediaWrapper}
+          onClick={() =>  {
+            value.handleDetail(id);
+          }}
+        >
+          <Link to="/product-details">
+            <CardMedia
+              className={classes.media}
+              image={require(`../../assets/${id}.jpg`)}
+              title={title}
+            />
+          </Link>
+        </div>
+        )}
+      </ProductConsumer>
       <CardContent>
         {/* <Button variant="contained" color="primary" align="left">
           DETAILS

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Typography, Paper, Tabs, Tab, makeStyles } from '@material-ui/core';
+import { Paper, Tabs, Tab, makeStyles } from '@material-ui/core';
 
 const styles = {
     Tabs: {
@@ -38,7 +38,6 @@ const ChoiceBar = ({ categories, currentCategory, onSelect }) => {
                     indicatorColor="primary"
                     textColor="primary"
                     variant="scrollable"
-                    centered
                 >
                     <Tab className={classes.Tab} label="All" />
                     {categories.map(category => (

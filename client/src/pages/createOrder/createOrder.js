@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
 import ProductsList from '../../components/ProductsList/ProductsList';
 import ChoiceBar from '../../components/ChoiceBar/ChoiceBar';
-import ChoiceBar2 from '../../components/ChoiceBar/ChoiceBar2';
-import { categories, products } from '../../store';
+import { categories } from '../../store';
 import { withStyles } from "@material-ui/core/styles";
 import Logo from '../../components/Logo/Logo';
 
@@ -22,7 +21,6 @@ class CreateOrderPage extends Component  {
         super(props);
         this.state = {
             currentCategory: '',
-            products,
             cartCounter: 0
         }
     }
@@ -48,7 +46,6 @@ class CreateOrderPage extends Component  {
         return(
             <div>
                 <Logo cartCounter={cartCounter}/>
-                {/* <ChoiceBar2 /> */}
                 <ChoiceBar 
                     categories={categories}
                     currentCategory={this.state.currentCategory}
