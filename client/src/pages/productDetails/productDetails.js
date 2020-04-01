@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
 import CurrencyFormat from 'react-currency-format';
 import Logo from '../../components/Logo/Logo';
+import ChoiceBar2 from '../../components/ChoiceBar/ChoiceBar2';
 import { ProductConsumer } from '../../context';
 import { Container, Grid, Typography } from '@material-ui/core';
+import IngredientsList from '../../components/IngredientsList/IngredientsList';
 
 class ProductDetailsPage extends Component {
     render() {
         return (
             <div>
                 <Logo />
-                {/* <Typography variant="h3" align="left" style={{padding: '25px'}}>Product details</Typography> */}
                 <ProductConsumer>
+                {/* <Typography variant="h3" align="left" style={{padding: '25px'}}>Product details</Typography> */}
                     {value =>   {
                         const { id, title, description, calories, ingredients } = value.detailProduct;
                         return (
@@ -30,19 +32,7 @@ class ProductDetailsPage extends Component {
                                         </Grid>
                                     </Grid>
                                 </Container>
-                                <div style={{background: '#eee', padding: '100px 0'}}>
-                                    <Typography variant="h4" style={{fontWeight: 'bold'}}>Ingredients in the {title}</Typography>
-                                    <Grid container justify="center" style={{padding: '50px 0'}}>
-                                        {ingredients.map(ingredient =>  {
-                                            return(
-                                                <Grid key={ingredient} item xs={5} sm={4} md={3} lg={2}>
-                                                    <img src={require(`../../assets/ingredients/${ingredient}.png`)} alt="ingredient-img" />
-                                                    <Typography variant="h6">{ingredient}</Typography>
-                                                </Grid>
-                                            )
-                                        })}
-                                    </Grid>
-                                </div>
+                                <IngredientsList />
                           </React.Fragment>
                         );     
                     }}

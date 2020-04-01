@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import HomePage from './pages/home/home';
 import CreateOrderPage from './pages/createOrder/createOrder';
 import ProductDetailsPage from './pages/productDetails/productDetails';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {

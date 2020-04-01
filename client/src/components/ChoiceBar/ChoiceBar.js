@@ -4,7 +4,7 @@ import { Paper, Tabs, Tab, makeStyles } from '@material-ui/core';
 
 const styles = {
     Tabs: {
-        background: "#fcfcfc",
+        background: "#fff",
     },
     Tab: {
         fontFamily: 'Permanent Marker',

@@ -13,7 +13,9 @@ const styles = {
     outerContainer: {
         display: 'flex',
         justifyContent: 'space-between',
-        background: '#f2f2f2',
+        marginBottom: '3px',
+        background: 'white',
+        boxShadow: '0 0  3px 1px #ccc',
     },
     innerContainer: {
         display: 'inline-flex',

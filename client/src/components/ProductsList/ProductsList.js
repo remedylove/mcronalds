@@ -12,7 +12,7 @@ const styles = {
     },
     GridContainer:  {
         marginLeft: 0,
-        marginTop: 0,
+        marginTop: '25px',
         maxWidth: '100%'
     }
 }
@@ -24,7 +24,7 @@ const ProductsList = ({ currentCategory }) => {
 
     return (
         <div className={classes.Container}>
-            <Grid className={classes.GridContainer} container justify="center" spacing={2}>
+            <Grid className={classes.GridContainer} container justify="center" spacing={3}>
                 <ProductConsumer>
                     {value => (
                         value.products.map(product => (
