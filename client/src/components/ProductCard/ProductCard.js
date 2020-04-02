@@ -15,6 +15,7 @@ import { Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input } from 're
 import { ingredientsList } from '../../store';
 import CustomizeIngredient from '../CustomizeIngredient/CustomizeIngredient';
 import ItemModal from '../ItemModal/ItemModal';
+import ProductDetailsPage from '../../pages/productDetails/productDetails';
 
 const styles = theme => ({
   CardHeader: {
@@ -32,8 +33,12 @@ const styles = theme => ({
     cursor: 'pointer'
   },
   Link: {
-    textDecoration: 'none !important',
-    color: 'inherit'
+    // // textDecoration: 'none',
+    color: 'inherit',
+    '&:hover':  {
+      textDecoration: 'none',
+      color: 'inherit'
+    }
   },
   mediaWrapper: {
     overflow: 'hidden'
@@ -80,7 +85,7 @@ class ProductCard extends Component {
               </IconButton>
             }
             align="left"
-            title={<Link className={classes.Link} to="/product-details"><Typography className={classes.Typography} variant="h6">{title}</Typography></Link>}
+            title={<Link className={classes.Link} to={`/product-details/${id}`}><Typography className={classes.Typography} variant="h6">{title}</Typography></Link>}
             subheader={<CurrencyFormat value={4.99} displayType={'text'} prefix={'$'}/>}
           />
           <ProductConsumer>
@@ -91,7 +96,7 @@ class ProductCard extends Component {
                 value.handleDetail(id);
               }}
             >
-              <Link to="/product-details">
+              <Link to={`/product-details/${id}`}>
                 <CardMedia
                   className={classes.media}
                   image={require(`../../assets/${id}.jpg`)}

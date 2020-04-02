@@ -1,33 +1,14 @@
 import React, { Component, createContext } from 'react'
 
 import storeProducts from './store';
-import { detailProduct } from './store';
 
 const ProductContext = createContext();
 
 class ProductProvider extends Component {
     state = {
-        products: [],
-        detailProduct
+        products: storeProducts,
+        detailProduct: {}
     };
-
-    componentDidMount() {
-        this.setProducts();
-    }
-    
-    setProducts = () => {
-        let products = [];
-        storeProducts.forEach(item => {
-            const singleItem = {...item};
-            products = [...products, singleItem];
-        });
-        this.setState(() => (
-            {
-                ...this.state,
-                products
-            }
-        ));
-    }
 
     getItem = id => {
         console.log(id);
@@ -37,10 +18,10 @@ class ProductProvider extends Component {
 
     handleDetail = id =>    {
         const detailProduct = this.getItem(id);
-        this.setState(({
+        this.setState({
             ...this.state,
             detailProduct
-        }))
+        }, console.log(this.state))
     }
 
     render() {
