@@ -14,6 +14,7 @@ import { ProductConsumer } from '../../context';
 import { Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input } from 'reactstrap';
 import { ingredientsList } from '../../store';
 import CustomizeIngredient from '../CustomizeIngredient/CustomizeIngredient';
+import ItemModal from '../ItemModal/ItemModal';
 
 const styles = theme => ({
   CardHeader: {
@@ -22,8 +23,6 @@ const styles = theme => ({
   card: {
     border: '1px solid #ddd',
     background: 'transparent',
-    // background: '#eee',
-    // borderRadius: '20px',
     transition: '.2s',
     '&:hover':  {
       transform: 'scale(1.05)'
@@ -48,20 +47,6 @@ const styles = theme => ({
   add: {
     color: '#0275d8',
   },
-  buttonWrapper: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    width: '100%'
-  },
-  Button: {
-    background: '#428bca',
-    color: '#fff',
-    marginTop: '15px',
-    '&:hover':  {
-      background: '#317ab9'
-    },
-  }
 });
 
 
@@ -81,8 +66,8 @@ class ProductCard extends Component {
 }
 
   render()  {
-    const { id, title, ingredients } = this.props.product;
-    const { classes } = this.props;
+    const { classes, product } = this.props;
+    const { id, title, ingredients } = product;
 
     return (
       <React.Fragment>
@@ -127,23 +112,7 @@ class ProductCard extends Component {
             </Button>
           </CardContent>
         </Card>
-        <Modal
-            className="modal-lg"
-            isOpen={this.state.modal}
-            toggle={this.toggle}
-        >
-        <ModalHeader toggle={this.toggle}>
-          <Typography variant="h5" align="center">Customize your {title}</Typography>
-        </ModalHeader>
-        <ModalBody>
-          {ingredients.map(ingredient =>  (
-            <CustomizeIngredient ingredient={ingredient} />
-          ))}
-          <div className={classes.buttonWrapper}>
-            <Button className={classes.Button} variant="contained" onClick={this.toggle}>Accept and add to cart</Button>
-          </div>
-        </ModalBody>
-        </Modal>
+        <ItemModal product={product} modal={this.state.modal} toggle={this.toggle} />
       </React.Fragment>
     );
   }

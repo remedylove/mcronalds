@@ -9,7 +9,7 @@ const styles = theme =>  ({
         justifyContent: 'space-between',
         alignItems: 'center',
         background: '#f7f7f7',
-        // border: '1px solid #0275d8',
+        fontWeight: 300,
         margin: '5px 0'
     },
     innerContainer: {
@@ -18,29 +18,9 @@ const styles = theme =>  ({
         justifyContent: 'space-between',
         alignItems: 'center',
     },
-    buttonMinus: {
-        // borderRadius: 0,
-        border: 'none',
-        background: '#ea645f',
-        fontWeight: 'bold',
-        color: '#fff',
+    button: {
         margin: '10px',
         padding: '5px 0',
-        '&:hover':  {
-            background: '#d9534f'
-          },
-    },
-    buttonPlus: {
-        // borderRadius: 0,
-        border: 'none',
-        background: '#6eda7c',
-        fontWeight: 'bold',
-        color: '#fff',
-        margin: '10px',
-        padding: '5px 0',
-        '&:hover':  {
-            background: '#5cb85c'
-          },
     },
     counterContainer: {
         display: 'flex',
@@ -105,9 +85,9 @@ class CustomizeIngredient extends Component {
                         <div className={classes.innerContainer}>
                             <Typography className={classes.ingredient}>{ingredient}</Typography>
                             <div className={classes.counterContainer}>
-                                <Button variant="outlined" className={classes.buttonMinus} onClick={this.decrement}>-</Button>
+                                <Button variant="outlined" className={classes.button} onClick={this.decrement}>-</Button>
                                 <Typography>{counter}</Typography>
-                                <Button variant="outlined" className={classes.buttonPlus} onClick={this.increment}>+</Button>
+                                <Button variant="outlined" className={classes.button} onClick={this.increment}>+</Button>
                             </div>
                         </div>
                     </Grid>
