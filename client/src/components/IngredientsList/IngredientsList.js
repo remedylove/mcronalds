@@ -1,22 +1,41 @@
 import React from 'react';
-import { Grid, Typography, CircularProgress } from '@material-ui/core';
+import { Container, Grid, Typography, CircularProgress, makeStyles } from '@material-ui/core';
+
+const styles = {
+    Typography: {
+        fontWeight: 'bold'
+    },
+    Grid: {
+        paddingTop: '2rem'
+    },
+    ingredientsContainer: {
+        background: '#eee',
+        padding: '3em 0'
+    }
+}
+
+const useStyles = makeStyles(styles);
 
 const IngredientsList = ({ title, ingredients }) => {
-    console.log(ingredients);
+    
+    const classes = useStyles();
+
     return (
         ingredients
-        ? <div style={{background: '#eee', padding: '50px 0'}}>
-            <Typography variant="h4" style={{fontWeight: 'bold'}}>Ingredients in the {title}</Typography>
-            <Grid container justify="center" style={{paddingTop: '50px'}}>
-                {ingredients.map(ingredient =>  {
-                    return(
-                        <Grid key={ingredient} item xs={6} sm={4} md={3} lg={2}>
-                            <img src={require(`../../assets/ingredients/${ingredient}.png`)} alt="ingredient-img" />
-                            <Typography variant="h6">{ingredient}</Typography>
-                        </Grid>
-                    )
-                })}
-            </Grid>
+        ? <div className={classes.ingredientsContainer}>
+            <Container>
+                <Typography className={classes.Typography} variant="h4">Ingredients in the {title}</Typography>
+                <Grid className={classes.Grid} container justify="center" spacing={4}>
+                    {ingredients.map(ingredient =>  {
+                        return(
+                            <Grid key={ingredient} item xs={6} sm={4} md={3} lg={2}>
+                                <img src={require(`../../assets/ingredients/${ingredient}.png`)} alt="ingredient-img" />
+                                <Typography variant="h6">{ingredient}</Typography>
+                            </Grid>
+                        )
+                    })}
+                </Grid>
+            </Container>
         </div>
         : <CircularProgress color="primary" size={50} />
     )
