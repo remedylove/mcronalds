@@ -1,7 +1,5 @@
-import React, { Component } from 'react'
-import Logo from '../../components/Logo/Logo';
+import React, { Component } from 'react';
 import { ProductConsumer } from '../../context';
-import SingleProductView from '../../components/SingleProductView/SingleProductView';
 
 const extractProductConsumer = neededProps => WrappedComponent =>
   class ProductExtractor extends Component {

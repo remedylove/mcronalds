@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import Typography from '@material-ui/core/Typography';
+import { Typography, withStyles } from '@material-ui/core';
 import ProductsList from '../../components/ProductsList/ProductsList';
 import ChoiceBar from '../../components/ChoiceBar/ChoiceBar';
 import { categories } from '../../store';
-import { withStyles } from "@material-ui/core/styles";
+import extractProductConsumer from '../../components/ExtractProductConsumer/ExtractProductConsumer';
+
 import Logo from '../../components/Logo/Logo';
 
 const styles = theme => ({
@@ -41,7 +42,7 @@ class CreateOrderPage extends Component  {
 
     render()    {
         const { currentCategory, cartCounter } = this.state;
-        const { classes } = this.props;
+        const { classes, products, handleDetail } = this.props;
         
         return(
             <div>
@@ -54,10 +55,10 @@ class CreateOrderPage extends Component  {
                 <Typography className={classes.Typography} variant="h4">
                         {currentCategory ? currentCategory : 'all products'}
                 </Typography>
-                <ProductsList currentCategory={currentCategory}/>
+                <ProductsList products={products} currentCategory={currentCategory} handleDetail={handleDetail}/>
             </div>
         );
     }
 }
 
-export default withStyles(styles)(CreateOrderPage);
+export default extractProductConsumer(['handleDetail', 'products'])(withStyles(styles)(CreateOrderPage));

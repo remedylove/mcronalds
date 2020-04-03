@@ -6,6 +6,7 @@ class SingleProductView extends Component {
     constructor(props)   {
         super(props);
     }
+
     render() {
         const { id, title, description, calories, ingredients } = this.props;
         return (

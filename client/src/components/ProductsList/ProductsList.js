@@ -1,7 +1,6 @@
 import React from 'react';
 import { Grid, makeStyles } from '@material-ui/core';
 import ProductCard from '../ProductCard/ProductCard';
-import { ProductConsumer } from '../../context';
 
 const styles = {
     Container : {
@@ -19,23 +18,19 @@ const styles = {
 
 const useStyles = makeStyles(styles);
 
-const ProductsList = ({ currentCategory }) => {
+const ProductsList = ({ products, currentCategory }) => {
     const classes = useStyles();
 
     return (
         <div className={classes.Container}>
             <Grid className={classes.GridContainer} container justify="center" spacing={3}>
-                <ProductConsumer>
-                    {value => (
-                        value.products.map(product => (
-                            !currentCategory || product.category === currentCategory
-                            ?   <Grid key={product.id} item xs={10} sm={5} md={3}>
-                                    <ProductCard key={product.id} product={product} />
-                                </ Grid>
-                            : null
-                        ))
-                    )}
-                </ProductConsumer>
+                {products.map(product => (
+                    !currentCategory || product.category === currentCategory
+                    ?   <Grid key={product.id} item xs={10} sm={5} md={3}>
+                            <ProductCard key={product.id} product={product} />
+                        </ Grid>
+                    : null
+                ))}
             </Grid>
         </div>
     );

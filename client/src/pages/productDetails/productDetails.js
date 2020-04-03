@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Logo from '../../components/Logo/Logo';
-import { ProductConsumer } from '../../context';
 import SingleProductView from '../../components/SingleProductView/SingleProductView';
+import RelatedProducts from '../../components/RelatedProducts/RelatedProducts';
 import extractProductConsumer from '../../components/ExtractProductConsumer/ExtractProductConsumer';
 
 class ProductDetailsPage extends Component {
@@ -12,15 +12,16 @@ class ProductDetailsPage extends Component {
 
     render() {
         const { id } = this.props.match.params;
-        const { title, description, calories, ingredients } = this.props.detailProduct;
+        const { categoryProducts } = this.props;
+        const { title, description, calories, category, ingredients } = this.props.detailProduct;
         return (
             <div>
                 <Logo />
-                {/* <Typography variant="h3" align="left" style={{padding: '25px'}}>Product details</Typography> */}
                 <SingleProductView id={id} title={title} description={description} calories={calories} ingredients={ingredients}/>
+                <RelatedProducts products={categoryProducts}/>
             </div>
         );
     }
 }
 
-export default extractProductConsumer(['handleDetail', 'detailProduct'])(ProductDetailsPage);
+export default extractProductConsumer(['handleDetail', 'detailProduct', 'categoryProducts'])(ProductDetailsPage);

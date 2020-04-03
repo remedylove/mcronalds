@@ -1,4 +1,4 @@
-import React, { Component, createContext } from 'react'
+import React, { Component, createContext } from 'react';
 
 import storeProducts from './store';
 
@@ -7,7 +7,8 @@ const ProductContext = createContext();
 class ProductProvider extends Component {
     state = {
         products: storeProducts,
-        detailProduct: {}
+        detailProduct: {},
+        categoryProducts: []
     };
 
     getItem = id => {
@@ -16,11 +17,18 @@ class ProductProvider extends Component {
         return product;
     }
 
+    getCategoryProducts = detailProduct =>    {
+        const categoryProducts = this.state.products.filter(product => product.category === detailProduct.category && product.id !== detailProduct.id).slice(0, 3);
+        return categoryProducts;
+    }
+
     handleDetail = id =>    {
         const detailProduct = this.getItem(id);
+        const categoryProducts = this.getCategoryProducts(detailProduct);
         this.setState({
             ...this.state,
-            detailProduct
+            detailProduct,
+            categoryProducts
         }, console.log(this.state))
     }
 
