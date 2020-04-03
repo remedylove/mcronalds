@@ -30,12 +30,23 @@ const products = [
   //   description: 'Delts exercise...',
   //   category: 'burgers'
   // },
-  // {
-  //   id: 'quarter-pounder',
-  //   title: 'Quarter Pounder',
-  //   description: 'Delts exercise...',
-  //   category: 'burgers'
-  // },
+  {
+    id: 'quarter-pounder',
+    title: 'Quarter Pounder',
+    calories: 510,
+    description: "Each Quarter Pounder with Cheese burger features a ¼ lb.* of 100% fresh beef that’s hot, deliciously juicy and cooked when you order. It’s seasoned with just a pinch of salt and pepper, sizzled on a flat iron grill, then topped with slivered onions, tangy pickles and two slices of melty cheese on a sesame seed bun. Our QPC® contains no artificial flavors, preservatives or added colors from artificial sources. **Our pickle contains an artificial preservative, so skip it if you like.",
+    ingredients: [
+      'quarter pounder bun',
+      'beef',
+      'cheese',
+      'ketchup',
+      'pickles',
+      'onion',
+      'mustard',
+      'grill seasoning'
+    ],
+    category: 'burgers'
+  },
   // {
   //   id: 'mcroyal',
   //   title: 'McRoyal',
@@ -102,6 +113,23 @@ const products = [
   //   description: 'Delts exercise...',
   //   category: 'combo meals'
   // },
+  {
+    id: 'bigmac-combo-meal',
+    title: 'BigMac Combo Meal',
+    description: 'The one and only McDonald’s Big Mac® Combo Meal. Big Mac Ingredients include a classic sesame hamburger bun, Big Mac Sauce, American cheese and sliced pickles. The Big Mac Combo Meal is served with our World Famous Fries® and your choice of an icy Coca-Cola fountain drink.',
+    calories: 1080,
+    ingredients: [
+      'bigmac bun',
+      'beef',
+      'shredded lettuce',
+      'bigmac sauce',
+      'cheese',
+      'pickles',
+      'onion',
+      'grill seasoning'
+    ],
+    category: 'combo meals'
+  },
   // {
   //   'id': 'drink-medium',
   //   title: 'Drink medium',

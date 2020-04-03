@@ -5,6 +5,7 @@ import HomePage from './pages/home/home';
 import CreateOrderPage from './pages/createOrder/createOrder';
 import ProductDetailsPage from './pages/productDetails/productDetails';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Error404Page from './pages/404/404';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
             <Route path="/" component={HomePage} exact/>
             <Route path="/create-order" component={CreateOrderPage} exact/>
             <Route path="/product-details/:id" component={ProductDetailsPage} exact/>
+            <Route component={Error404Page} />
           </Switch>
         </Router>
       </div>
