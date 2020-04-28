@@ -5,14 +5,17 @@ import storeProducts from './store';
 const ProductContext = createContext();
 
 class ProductProvider extends Component {
-    state = {
-        products: storeProducts,
-        detailProduct: {},
-        categoryProducts: []
-    };
+    constructor(props)   {
+        super(props);
+        this.state = {
+            products: storeProducts,
+            detailProduct: {},
+            categoryProducts: [],
+            cartItems: this.getCartItems()
+        };
+    }
 
     getItem = id => {
-        console.log(id);
         const product = this.state.products.find(item => item.id === id);
         return product;
     }
@@ -32,11 +35,25 @@ class ProductProvider extends Component {
         }, console.log(this.state))
     }
 
+    addItemToCart = id => {
+        const product = this.getItem(id);
+        const { cartItems } = this.state;
+        cartItems.push(product);
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    }
+
+    getCartItems = () => {
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+     
+        return cartItems;
+    }
+
     render() {
         return (
             <ProductContext.Provider value={{
                 ...this.state,
-                handleDetail: this.handleDetail
+                handleDetail: this.handleDetail,
+                addItemToCart: this.addItemToCart
             }}>
                 {this.props.children}
             </ProductContext.Provider>

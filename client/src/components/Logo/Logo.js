@@ -8,6 +8,7 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Badge from '@material-ui/core/Badge';
 import IconButton from '@material-ui/core/IconButton';
+import Cart from '../Cart/Cart';
 
 const styles = {
     outerContainer: {
@@ -93,11 +94,12 @@ const Logo = () =>    {
                     <IconButton style={{color: "#1da1f2"}}>
                         <TwitterIcon fontSize="small" />
                     </IconButton> */}
-                    <IconButton aria-label="show 4 new mails" color="inherit">
+                    <Cart />
+                    {/* <IconButton aria-label="show 4 new mails" color="inherit">
                         <Badge badgeContent={5} color="primary">
                             <ShoppingCartIcon fontSize="large" style={{color: 'gray'}}/>
                         </Badge>
-                    </IconButton>
+                    </IconButton> */}
                     {/* <IconButton>
                         {}
                         <ShoppingCartIcon fontSize="large" style={{color: 'gray'}}/>

@@ -67,7 +67,7 @@ class ProductCard extends Component {
 }
 
   render()  {
-    const { classes, product, handleDetail } = this.props;
+    const { classes, product, handleDetail, addItemToCart } = this.props;
     const { id, title } = product;
 
     return (
@@ -76,7 +76,7 @@ class ProductCard extends Component {
           <CardHeader
             className={classes.CardHeader}
             action={
-              <IconButton aria-label="settings">
+              <IconButton aria-label="settings" onClick={e => addItemToCart(id)}>
                 <AddCircleIcon className={classes.add} fontSize="large"/>
               </IconButton>
             }
@@ -116,5 +116,4 @@ class ProductCard extends Component {
   
 }
 
-export default extractProductConsumer(['handleDetail'])(withStyles(styles)(ProductCard));
-// export default withStyles(styles)(ProductCard);
+export default extractProductConsumer(['handleDetail', 'addItemToCart'])(withStyles(styles)(ProductCard));
