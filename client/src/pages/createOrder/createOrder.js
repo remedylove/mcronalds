@@ -3,9 +3,8 @@ import { Typography, withStyles } from '@material-ui/core';
 import ProductsList from '../../components/ProductsList/ProductsList';
 import ChoiceBar from '../../components/ChoiceBar/ChoiceBar';
 import { categories } from '../../store';
-import extractProductConsumer from '../../components/ExtractProductConsumer/ExtractProductConsumer';
-
 import Logo from '../../components/Logo/Logo';
+import extractProductConsumer from '../../components/ExtractProductConsumer/ExtractProductConsumer';
 
 const styles = theme => ({
     Typography: {
@@ -22,21 +21,12 @@ class CreateOrderPage extends Component  {
         super(props);
         this.state = {
             currentCategory: '',
-            cartCounter: 0
         }
     }
 
     handleCategorySelected = currentCategory =>  {
         this.setState({
             currentCategory
-        })
-    }
-
-    handleClick = () =>  {
-        this.setState(prevState => {
-            return {
-                cartCounter: prevState.cartCounter + 1 
-            }
         })
     }
 
@@ -55,10 +45,10 @@ class CreateOrderPage extends Component  {
                 <Typography className={classes.Typography} variant="h4">
                         {currentCategory ? currentCategory : 'all products'}
                 </Typography>
-                <ProductsList products={products} currentCategory={currentCategory} handleDetail={handleDetail}/>
+                <ProductsList products={products} currentCategory={currentCategory} handleDetail={handleDetail} />
             </div>
         );
     }
 }
 
-export default extractProductConsumer(['handleDetail', 'products'])(withStyles(styles)(CreateOrderPage));
+export default extractProductConsumer(['handleDetail', 'products', 'cartItems'])(withStyles(styles)(CreateOrderPage));

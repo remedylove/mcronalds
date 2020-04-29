@@ -71,7 +71,7 @@ const styles = {
 
 const useStyles = makeStyles(styles);
 
-const Logo = () =>    {
+const Logo = ({ cartCounter }) =>    {
     const classes = useStyles();
 
     return(

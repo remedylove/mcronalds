@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, Component } from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { Typography, Button, makeStyles } from '@material-ui/core';
+import { Typography, Button, makeStyles, withStyles } from '@material-ui/core';
 import CustomizeIngredient from '../CustomizeIngredient/CustomizeIngredient';
+import extractProductConsumer from '../ExtractProductConsumer/ExtractProductConsumer';
 
 const styles = {
   buttonWrapper: {
@@ -27,35 +28,56 @@ const styles = {
   }
 }
 
-const useStyles = makeStyles(styles);
+class ItemModal extends Component {
+  constructor(props)  {
+    super(props);
+    this.state = {
+      product: {...this.props.product}
+    }
+  }
 
-const ItemModal = ({ product, modal, toggle }) => {
-  const { id, title, ingredients } = product;
-  const classes = useStyles();
-  return (
-    <Modal
-        className="modal-lg"
-        isOpen={modal}
-        toggle={toggle}
-        returnFocusAfterClose={false}
-    >
-      <ModalHeader className={classes.ModalHeader} toggle={toggle} justify="center">
-        <div className={classes.buttonWrapper}>
-          <Typography className={classes.Header} variant="h6">Customize your {title}</Typography>
-        </div>
-      </ModalHeader>
-      <ModalBody>
-        {ingredients.map(ingredient =>  (
-          <CustomizeIngredient key={id} ingredient={ingredient} />
-        ))}
-      </ModalBody>
-      <ModalFooter>
-        <div className={classes.buttonWrapper}>
-          <Button className={classes.Button} variant="contained" onClick={toggle}>Accept and add to cart</Button>
-        </div>
-      </ModalFooter>
-    </Modal>
-  );
+  addIngredient = ingredient => {
+    const { product } = this.state;
+    product.ingredients.push(ingredient);
+  }
+
+  removeIngredient = ingredient =>  {
+    const { product } = this.state;
+    const index = product.ingredients.indexOf(ingredient);
+    if(index > -1)  {
+      product.ingredients.splice(index, 1);
+    } 
+  }
+
+  render()  {
+    const { classes, product, modal, toggle, addItemToCart } = this.props;
+    const { id, title, ingredients } = product;
+
+    return (
+      <Modal
+          className="modal-lg"
+          isOpen={modal}
+          toggle={toggle}
+          returnFocusAfterClose={false}
+      >
+        <ModalHeader className={classes.ModalHeader} toggle={toggle} justify="center">
+          <div className={classes.buttonWrapper}>
+            <Typography className={classes.Header} variant="h6">Customize your {title}</Typography>
+          </div>
+        </ModalHeader>
+        <ModalBody>
+          {ingredients.map(ingredient =>  (
+            <CustomizeIngredient key={id} ingredient={ingredient} addIngredient={this.addIngredient} removeIngredient={this.removeIngredient} />
+          ))}
+        </ModalBody>
+        <ModalFooter>
+          <div className={classes.buttonWrapper}>
+            <Button className={classes.Button} variant="contained" onClick={e => {addItemToCart(id); toggle();}}>Accept and add to cart</Button>
+          </div>
+        </ModalFooter>
+      </Modal>
+    );
+  }
 }
 
-export default ItemModal;
+export default extractProductConsumer(['addItemToCart'])(withStyles(styles)(ItemModal));

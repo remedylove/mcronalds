@@ -5,15 +5,23 @@ import IconButton from '@material-ui/core/IconButton';
 import extractProductConsumer from '../ExtractProductConsumer/ExtractProductConsumer';
 
 class Cart extends Component {
+    constructor(props)  {
+        super(props);
+        this.state = {
+            cartCounter: this.props.cartItems.length
+        }
+    }
     render() {
         const { cartItems } = this.props;
-        console.log(cartItems.length);
+        const amount = cartItems.length
         return (
-            <IconButton aria-label="show 4 new mails" color="inherit">
-                <Badge badgeContent={cartItems.length} color="primary">
-                    <ShoppingCartIcon fontSize="large" style={{color: 'gray'}}/>
-                </Badge>
-            </IconButton>
+            <div>
+                <IconButton aria-label="show 4 new mails" color="inherit">
+                    <Badge badgeContent={amount} color="primary">
+                        <ShoppingCartIcon fontSize="large" style={{color: 'gray'}}/>
+                    </Badge>
+                </IconButton>
+            </div>
         )
     }
 }

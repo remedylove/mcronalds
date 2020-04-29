@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Typography, Button } from '@material-ui/core';
 import { Grid, withStyles } from '@material-ui/core';
+import { array } from 'prop-types';
+import extractProductConsumer from '../ExtractProductConsumer/ExtractProductConsumer';
 
 const styles = theme =>  ({
     outerContainer: {
@@ -39,12 +41,15 @@ class CustomizeIngredient extends Component {
         this.state = {
             counter: 1,
             allowIncrement: true,
-            allowDecrement: true
+            allowDecrement: true,
+            // product: {...this.props.product}
         }
     }
 
-    increment = () =>   {
-        const { allowIncrement, counter } = this.state;
+    increment = ingredient =>   {
+        const { counter } = this.state;
+        this.props.addIngredient(ingredient);
+
         counter <= 1
         ?
             this.setState(prevState => ({
@@ -59,8 +64,9 @@ class CustomizeIngredient extends Component {
             }))
     }
 
-    decrement = () =>   {
-        const { allowDecrement, counter } = this.state;
+    decrement = ingredient =>   {
+        const { counter } = this.state;
+        this.props.removeIngredient(ingredient);
         counter >= 1
         ?
             this.setState(prevState => ({
@@ -76,7 +82,7 @@ class CustomizeIngredient extends Component {
     }
 
     render()    {
-        const { counter } = this.state; 
+        const { counter } = this.state;
         const { ingredient, classes } = this.props;
         return (
             <div className={classes.outerContainer}>
@@ -85,9 +91,9 @@ class CustomizeIngredient extends Component {
                         <div className={classes.innerContainer}>
                             <Typography className={classes.ingredient}>{ingredient}</Typography>
                             <div className={classes.counterContainer}>
-                                <Button variant="outlined" className={classes.button} onClick={this.decrement}>-</Button>
+                                <Button variant="outlined" className={classes.button} onClick={e => this.decrement(ingredient)}>-</Button>
                                 <Typography>{counter}</Typography>
-                                <Button variant="outlined" className={classes.button} onClick={this.increment}>+</Button>
+                                <Button variant="outlined" className={classes.button} onClick={e => this.increment(ingredient)}>+</Button>
                             </div>
                         </div>
                     </Grid>
@@ -97,4 +103,4 @@ class CustomizeIngredient extends Component {
     }
 }
 
-export default withStyles(styles)(CustomizeIngredient);
+export default extractProductConsumer([''])(withStyles(styles)(CustomizeIngredient));
