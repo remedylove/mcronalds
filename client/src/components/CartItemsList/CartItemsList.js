@@ -15,13 +15,15 @@ class CartItemsList extends Component {
 
     render()    {
         const { cartItems, classes } = this.props;
+        let background;
         return (
             <Container>
-                <Grid className={classes.gridContainer} container>
+                <Grid className={classes.gridContainer} container >
                     <CartTableHeader />
-                    {cartItems.map(cartItem => (
-                        <CartItem cartItem={cartItem} />
-                    ))}
+                    {cartItems.map((cartItem, index) => {
+                        index % 2 ? background = "#f2f2f2": background = "#fff";
+                        return <CartItem cartItem={cartItem} background={background} />
+                    })}
                 </Grid>
             </Container>
         )

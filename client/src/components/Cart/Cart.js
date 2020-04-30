@@ -6,15 +6,15 @@ import extractProductConsumer from '../ExtractProductConsumer/ExtractProductCons
 import { Link } from 'react-router-dom';
 
 class Cart extends Component {
-    constructor(props)  {
-        super(props);
-        this.state = {
-            cartCounter: this.props.cartItems.length
-        }
-    }
+
     render() {
         const { cartItems } = this.props;
-        const amount = cartItems.length
+
+        let amount = 0;
+        cartItems.map(cartItem => {
+            amount += cartItem.quantity;
+        });
+        
         return (
             <div>
                 <Link to='/cart'>

@@ -14,6 +14,11 @@ class ProductProvider extends Component {
             cartItems: this.getCartItems()
         };
     }
+    
+    getItemToDetails = title => {
+        const product = this.state.products.find(item => item.title.toLowerCase() === title.toLowerCase());
+        return product;
+    }
 
     getItem = id => {
         const product = this.state.products.find(item => item.id === id);
@@ -21,12 +26,12 @@ class ProductProvider extends Component {
     }
 
     getCategoryProducts = detailProduct =>    {
-        const categoryProducts = this.state.products.filter(product => product.category === detailProduct.category && product.id !== detailProduct.id).slice(0, 3);
+        const categoryProducts = this.state.products.filter(product => product.category === detailProduct.category && product.title !== detailProduct.title).slice(0, 3);
         return categoryProducts;
     }
 
-    handleDetail = id =>    {
-        const detailProduct = this.getItem(id);
+    handleDetail = title =>    {
+        const detailProduct = this.getItemToDetails(title);
         const categoryProducts = this.getCategoryProducts(detailProduct);
         this.setState({
             ...this.state,
@@ -35,9 +40,53 @@ class ProductProvider extends Component {
         }, console.log(this.state))
     }
 
+    incrementQuantity = id => {
+        const { cartItems } = this.state;
+        const cartProduct = cartItems.find(item => item.id === id);
+        cartProduct.quantity += 1;
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        this.setState({
+            cartItems: this.getCartItems()
+        });
+    }
+
+    decrementQuantity = id => {
+        const { cartItems } = this.state;
+        const cartProduct = cartItems.find(item => item.id === id);
+        if(cartProduct.quantity >= 2) {
+            cartProduct.quantity -= 1;
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            this.setState({
+                cartItems: this.getCartItems()
+            });
+        }
+    }
+
     addItemToCart = id => {
+        console.log('wtf')
         const product = this.getItem(id);
         const { cartItems } = this.state;
+        const isInCartYet = cartItems.find(item => item.id === id);
+        console.log(isInCartYet);
+        if(isInCartYet) {
+            isInCartYet.quantity += 1;
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            this.setState({
+                cartItems: this.getCartItems()
+            });
+        } else {
+            product.quantity = 1;
+            cartItems.push(product);
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            this.setState({
+                cartItems: this.getCartItems()
+            });
+        }
+    }
+    
+    addProductToCart = product => {
+        const { cartItems } = this.state;
+        product.quantity = 1;
         cartItems.push(product);
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
         this.setState({
@@ -46,16 +95,12 @@ class ProductProvider extends Component {
     }
 
     removeItemFromCart = id => {
-        // const product = this.getItem(id);
-        // console.log(product);
-        console.log(this.state.cartItems);
         const { cartItems } = this.state;
         const updatedCartItems = cartItems.filter(item => item.id !== id);
         localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
         this.setState({
             cartItems: this.getCartItems()
         });
-        // console.log(this.state.cartItems);
     }
 
     getCartItems = () => {
@@ -70,7 +115,10 @@ class ProductProvider extends Component {
                 ...this.state,
                 handleDetail: this.handleDetail,
                 addItemToCart: this.addItemToCart,
-                removeItemFromCart: this.removeItemFromCart
+                removeItemFromCart: this.removeItemFromCart,
+                addProductToCart: this.addProductToCart,
+                incrementQuantity: this.incrementQuantity,
+                decrementQuantity: this.decrementQuantity
             }}>
                 {this.props.children}
             </ProductContext.Provider>

@@ -11,6 +11,9 @@ const styles = {
         '&:hover': {
             color: '#0275d8',
             background: '#f2f2f2'
+        },
+        '&:focus': {
+            outline: 'none',
         }
     }
 }
@@ -41,7 +44,7 @@ const ChoiceBar = ({ categories, currentCategory, onSelect }) => {
                 >
                     <Tab className={classes.Tab} label="All" />
                     {categories.map(category => (
-                        <Tab key={category} className={classes.Tab} label={category} />
+                        <Tab key={category} className={classes.Tab} label={category} disableFocusRipple/>
                     ))}
                 </Tabs>
             </Paper> 

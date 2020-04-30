@@ -1,5 +1,10 @@
 /* @import url('https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap'); */
-*:focus {
+* {
+  outline: 0;
+  border: none;
+}
+
+button:focus {
   outline: none;
 }
 

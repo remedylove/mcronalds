@@ -1,3 +1,11 @@
+import QuarterPounder from './assets/quarter-pounder.jpg';
+import QuarterPounderDetails from './assets/quarter-pounder-details.jpg';
+import Cheeseburger from './assets/cheeseburger.jpg';
+import CheeseburgerDetails from './assets/cheeseburger-details.jpg';
+import BigMac from './assets/bigmac.jpg';
+import BigMacDetails from './assets/bigmac-details.jpg';
+import { v4 as uuid } from 'uuid';
+
 export const categories = [
     'burgers', 'wraps', 'combo meals', 'beverages', 'desserts & shakes', 'salads', 'snacks & sides'
   ]
@@ -8,7 +16,7 @@ export const ingredientsList = [
   
 const products = [
   {
-    id: 'cheeseburger',
+    id: 1,
     title: 'Cheeseburger',
     description: "Our simple, classic cheeseburger begins with a 100% pure beef patty seasoned with just a pinch of salt and pepper. It's topped with a tangy pickle, chopped onions, ketchup, mustard, and a slice of melty American cheese. It contains no artificial flavors, preservatives or added colors from artificial sources. Our pickle contains an artificial preservative, so skip it if you like.",
     calories: 300,
@@ -26,6 +34,8 @@ const products = [
       added: [],
       removed: [],
     },
+    image: Cheeseburger,
+    imageDetails: CheeseburgerDetails,
     price: 5.50,
     category: 'burgers'
   },
@@ -36,7 +46,7 @@ const products = [
   //   category: 'burgers'
   // },
   {
-    id: 'quarter-pounder',
+    id: 2,
     title: 'Quarter Pounder',
     calories: 510,
     description: "Each Quarter Pounder with Cheese burger features a ¼ lb.* of 100% fresh beef that’s hot, deliciously juicy and cooked when you order. It’s seasoned with just a pinch of salt and pepper, sizzled on a flat iron grill, then topped with slivered onions, tangy pickles and two slices of melty cheese on a sesame seed bun. Our QPC® contains no artificial flavors, preservatives or added colors from artificial sources. **Our pickle contains an artificial preservative, so skip it if you like.",
@@ -54,6 +64,8 @@ const products = [
       added: [],
       removed: [],
     },
+    image: QuarterPounder,
+    imageDetails: QuarterPounderDetails,
     price: 5.50,
     category: 'burgers'
   },
@@ -83,7 +95,7 @@ const products = [
   //   category: 'burgers'
   // },
   {
-    id: 'bigmac',
+    id: 3,
     title: 'BigMac',
     description: 'Mouthwatering perfection starts with two 100% pure beef patties and Big Mac sauce sandwiched between a sesame seed bun. It’s topped off with pickles, crisp shredded lettuce, finely chopped onion and American cheese. Also, try our new Little Mac™ and Double Big Mac.',
     calories: 540,
@@ -101,6 +113,8 @@ const products = [
       added: [],
       removed: [],
     },
+    image: BigMac,
+    imageDetails: BigMacDetails,
     price: 5.50,
     category: 'burgers'
   },
@@ -128,28 +142,28 @@ const products = [
   //   description: 'Delts exercise...',
   //   category: 'combo meals'
   // },
-  {
-    id: 'bigmac-combo-meal',
-    title: 'BigMac Combo Meal',
-    description: 'The one and only McDonald’s Big Mac® Combo Meal. Big Mac Ingredients include a classic sesame hamburger bun, Big Mac Sauce, American cheese and sliced pickles. The Big Mac Combo Meal is served with our World Famous Fries® and your choice of an icy Coca-Cola fountain drink.',
-    calories: 1080,
-    ingredients: [
-      'bigmac bun',
-      'beef',
-      'shredded lettuce',
-      'bigmac sauce',
-      'cheese',
-      'pickles',
-      'onion',
-      'grill seasoning'
-    ],
-    customization: {
-      added: [],
-      removed: [],
-    },
-    price: 5.50,
-    category: 'combo meals'
-  },
+  // {
+  //   id: 'bigmac-combo-meal',
+  //   title: 'BigMac Combo Meal',
+  //   description: 'The one and only McDonald’s Big Mac® Combo Meal. Big Mac Ingredients include a classic sesame hamburger bun, Big Mac Sauce, American cheese and sliced pickles. The Big Mac Combo Meal is served with our World Famous Fries® and your choice of an icy Coca-Cola fountain drink.',
+  //   calories: 1080,
+  //   ingredients: [
+  //     'bigmac bun',
+  //     'beef',
+  //     'shredded lettuce',
+  //     'bigmac sauce',
+  //     'cheese',
+  //     'pickles',
+  //     'onion',
+  //     'grill seasoning'
+  //   ],
+  //   customization: {
+  //     added: [],
+  //     removed: [],
+  //   },
+  //   price: 5.50,
+  //   category: 'combo meals'
+  // },
   // {
   //   'id': 'drink-medium',
   //   title: 'Drink medium',

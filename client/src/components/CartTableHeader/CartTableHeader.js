@@ -14,10 +14,10 @@ const CartTableHeader = () => {
     const classes = useStyles();
     return (
         <>
-            <Grid item xs={2} sm={2} md={2}>
-                <Typography className={classes.columnName} variant="body1">Product name</Typography>
+            <Grid item xs={3} sm={3} md={3}>
+                <Typography className={classes.columnName} variant="body1">Product</Typography>
             </Grid>
-            <Grid item xs={2} sm={2} md={2}>
+            <Grid item xs={1} sm={1} md={1}>
                 <Typography className={classes.columnName} variant="body1">Quantity</Typography>
             </Grid>
             <Grid item xs={4} sm={4} md={4}>

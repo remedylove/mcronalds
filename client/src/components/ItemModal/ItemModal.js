@@ -33,30 +33,31 @@ class ItemModal extends Component {
   constructor(props)  {
     super(props);
     this.state = {
-      product: {...this.props.product}
+      product: JSON.parse(JSON.stringify(this.props.product))
     }
   }
 
+  omit = (prop, { [prop]: _, ...rest }) => rest;
+
   addIngredient = ingredient => {
     const { product } = this.state;
-    product.customization.added.push(ingredient);
+    product['customization']['added'].push(ingredient);
   }
 
   removeIngredient = ingredient =>  {
     const { product } = this.state;
-    product.customization.removed.push(ingredient);
-    // const index = product.ingredients.indexOf(ingredient);
-    // if(index > -1)  {
-    //   product.ingredients.splice(index, 1);
-    // } 
+    product['customization']['removed'].push(ingredient);
   }
 
   render()  {
-    const { classes, product, modal, toggle, addItemToCart } = this.props;
-    // product.id = uuid();
+    const { classes, modal, toggle, addProductToCart } = this.props;
+    const { product } = this.state;
+    product.id = uuid();
+    console.log(product.id);
     const { id, title, ingredients } = product;
-    // id = uuid();
 
+    console.log(this.state.product);
+    console.log(this.props.product);
     return (
       <Modal
           className="modal-lg"
@@ -71,12 +72,12 @@ class ItemModal extends Component {
         </ModalHeader>
         <ModalBody>
           {ingredients.map(ingredient =>  (
-            <CustomizeIngredient key={id} ingredient={ingredient} addIngredient={this.addIngredient} removeIngredient={this.removeIngredient} />
+            <CustomizeIngredient key={ingredient} ingredient={ingredient} addIngredient={this.addIngredient} removeIngredient={this.removeIngredient} />
           ))}
         </ModalBody>
         <ModalFooter>
           <div className={classes.buttonWrapper}>
-            <Button className={classes.Button} variant="contained" onClick={e => {addItemToCart(id); toggle();}}>Accept and add to cart</Button>
+            <Button className={classes.Button} variant="contained" onClick={e => {addProductToCart(product); toggle();}}>Accept and add to cart</Button>
           </div>
         </ModalFooter>
       </Modal>
@@ -84,4 +85,4 @@ class ItemModal extends Component {
   }
 }
 
-export default extractProductConsumer(['addItemToCart'])(withStyles(styles)(ItemModal));
+export default extractProductConsumer(['addProductToCart'])(withStyles(styles)(ItemModal));

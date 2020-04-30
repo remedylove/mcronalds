@@ -48,7 +48,9 @@ class CustomizeIngredient extends Component {
 
     increment = ingredient =>   {
         const { counter } = this.state;
-        this.props.addIngredient(ingredient);
+        if(counter + 1 === 2) {
+            this.props.addIngredient(ingredient);
+        }
 
         counter <= 1
         ?

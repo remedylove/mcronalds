@@ -13,11 +13,11 @@ class ProductDetailsPage extends Component {
     render() {
         const { id } = this.props.match.params;
         const { categoryProducts } = this.props;
-        const { title, description, calories, category, ingredients } = this.props.detailProduct;
+        const { title, description, calories, ingredients, imageDetails } = this.props.detailProduct;
         return (
             <div>
                 <Logo />
-                <SingleProductView id={id} title={title} description={description} calories={calories} ingredients={ingredients}/>
+                <SingleProductView id={id} title={title} description={description} calories={calories} ingredients={ingredients} imageDetails={imageDetails}/>
                 <RelatedProducts products={categoryProducts}/>
             </div>
         );

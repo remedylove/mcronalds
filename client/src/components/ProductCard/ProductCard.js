@@ -11,6 +11,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { Link } from 'react-router-dom';
 import { ingredientsList } from '../../store';
 import ItemModal from '../ItemModal/ItemModal';
+import { v4 as uuid } from 'uuid';
 import extractProductConsumer from '../../components/ExtractProductConsumer/ExtractProductConsumer';
 
 const styles = theme => ({
@@ -68,7 +69,8 @@ class ProductCard extends Component {
 
   render()  {
     const { classes, product, handleDetail, addItemToCart } = this.props;
-    const { id, title } = product;
+    // product.id = uuid();
+    const { id, title, image } = product;
 
     return (
       <React.Fragment>
@@ -81,19 +83,19 @@ class ProductCard extends Component {
               </IconButton>
             }
             align="left"
-            title={<Link className={classes.Link} to={`/product-details/${id}`}><Typography className={classes.Typography} variant="h6">{title}</Typography></Link>}
+            title={<Link className={classes.Link} to={`/product-details/${title.toLowerCase()}`}><Typography className={classes.Typography} variant="h6">{title}</Typography></Link>}
             subheader={<CurrencyFormat value={4.99} displayType={'text'} prefix={'$'}/>}
           />
           <div 
             className={classes.mediaWrapper}
             onClick={() => {
-              handleDetail(id);
+              handleDetail(title);
             }}
           >
-            <Link to={`/product-details/${id}`}>
+            <Link to={`/product-details/${title.toLowerCase()}`}>
               <CardMedia
                 className={classes.media}
-                image={require(`../../assets/${id}.jpg`)}
+                image={image}
                 title={title}
               />
             </Link>
@@ -109,7 +111,7 @@ class ProductCard extends Component {
             </Button>
           </CardContent>
         </Card>
-        <ItemModal product={product} modal={this.state.modal} toggle={this.toggle} />
+        {this.state.modal && <ItemModal product={product} modal={this.state.modal} toggle={this.toggle} />}
       </React.Fragment>
     );
   }

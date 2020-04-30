@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Grid, Typography } from '@material-ui/core';
 import CurrencyFormat from 'react-currency-format';
 
-const ProductPresentation = ({ id, title, calories, description}) => {
+const ProductPresentation = ({ title, calories, description, imageDetails }) => {
     return (
         <Container style={{width: '80%'}}>
             <Grid container style={{padding: '100px 0'}}>
@@ -15,11 +15,11 @@ const ProductPresentation = ({ id, title, calories, description}) => {
                     <Typography align="left" style={{marginTop: '25px'}}>{description}</Typography>
                 </Grid>
                 <Grid item md={7}align="left">
-                    <img src={require(`../../assets/${id}-details.jpg`)} alt="details-product-img" style={{maxWidth: '100%', marginTop: '25px'}}/>
+                    <img src={imageDetails} alt="details-product-img" style={{maxWidth: '100%', marginTop: '25px'}}/>
                 </Grid>
             </Grid>
         </Container>
     )
 }
 
-export default ProductPresentation
+export default ProductPresentation;
