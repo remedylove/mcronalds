@@ -2,11 +2,11 @@ import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import HomePage from './pages/home/home';
-import CreateOrderPage from './pages/createOrder/createOrder';
-import ProductDetailsPage from './pages/productDetails/productDetails';
-import CartPage from './pages/cart/cart';
-import Error404Page from './pages/404/404';
+import HomePage from './pages/HomePage/HomePage';
+import CreateOrderPage from './pages/CreateOrderPage/CreateOrderPage';
+import ProductDetailsPage from './pages/ProductDetailsPage/ProductDetailsPage';
+import CartPage from './pages/CartPage/CartPage';
+import Error404Page from './pages/404Page/404Page';
 
 
 function App() {

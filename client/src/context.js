@@ -40,6 +40,22 @@ class ProductProvider extends Component {
         const { cartItems } = this.state;
         cartItems.push(product);
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        this.setState({
+            cartItems: this.getCartItems()
+        })
+    }
+
+    removeItemFromCart = id => {
+        // const product = this.getItem(id);
+        // console.log(product);
+        console.log(this.state.cartItems);
+        const { cartItems } = this.state;
+        const updatedCartItems = cartItems.filter(item => item.id !== id);
+        localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+        this.setState({
+            cartItems: this.getCartItems()
+        });
+        // console.log(this.state.cartItems);
     }
 
     getCartItems = () => {
@@ -53,7 +69,8 @@ class ProductProvider extends Component {
             <ProductContext.Provider value={{
                 ...this.state,
                 handleDetail: this.handleDetail,
-                addItemToCart: this.addItemToCart
+                addItemToCart: this.addItemToCart,
+                removeItemFromCart: this.removeItemFromCart
             }}>
                 {this.props.children}
             </ProductContext.Provider>

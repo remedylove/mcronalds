@@ -4,14 +4,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import Banner from '../../components/Banner/Banner';
 import Button from "@material-ui/core/Button";
 
-const styles = {
+const useStyles = makeStyles({
     button: {
         fontFamily: 'Permanent Marker',
         color: 'white',
     }
-}
-
-const useStyles = makeStyles(styles);
+});
 
 const HomePage = () =>  {
     const classes = useStyles();

@@ -22,6 +22,11 @@ const products = [
       'mustard',
       'grill seasoning'
     ],
+    customization: {
+      added: [],
+      removed: [],
+    },
+    price: 5.50,
     category: 'burgers'
   },
   // {
@@ -45,6 +50,11 @@ const products = [
       'mustard',
       'grill seasoning'
     ],
+    customization: {
+      added: [],
+      removed: [],
+    },
+    price: 5.50,
     category: 'burgers'
   },
   // {
@@ -87,6 +97,11 @@ const products = [
       'onion',
       'grill seasoning'
     ],
+    customization: {
+      added: [],
+      removed: [],
+    },
+    price: 5.50,
     category: 'burgers'
   },
   // {
@@ -128,6 +143,11 @@ const products = [
       'onion',
       'grill seasoning'
     ],
+    customization: {
+      added: [],
+      removed: [],
+    },
+    price: 5.50,
     category: 'combo meals'
   },
   // {
