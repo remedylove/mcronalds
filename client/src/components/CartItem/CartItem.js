@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Typography, IconButton, makeStyles } from '@material-ui/core';
+import { Grid, Typography, Paper, IconButton, makeStyles } from '@material-ui/core';
 import CurrencyFormat from 'react-currency-format';
 import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox';
 import AddBoxIcon from '@material-ui/icons/AddBox';
@@ -7,18 +7,19 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import extractProductConsumer from '../ExtractProductConsumer/ExtractProductConsumer';
 
 const useStyles = makeStyles({
+    gridContainer: {
+        margin: '.75em auto'
+    },
     gridItem: {
         display: 'flex', 
         justifyContent: 'center', 
         alignItems: 'center',
-        background: ({ background }) => background
     },
     customizations: {
         display: 'flex', 
         flexDirection: 'column', 
         justifyContent: 'center', 
         alignItems: 'center',
-        background: ({ background }) => background
     },
     productImage: {
         width: '100%'
@@ -32,6 +33,7 @@ const useStyles = makeStyles({
     },
     minusIcon: {
         color: '#cd5c5c',
+
         transition: '.5s ease'
     },
     plusButton: {
@@ -50,12 +52,13 @@ const useStyles = makeStyles({
     }
 });
 
-const CartItem = ({ cartItem, background, removeItemFromCart, incrementQuantity, decrementQuantity }) => {
+const CartItem = ({ cartItem, removeItemFromCart, incrementQuantity, decrementQuantity }) => {
 
-    const classes = useStyles({ background });
+    const classes = useStyles();
     const { id, title, price, customization, image, quantity } = cartItem;
+    
     return (
-        <>
+        <Grid className={classes.gridContainer} container>
             <Grid className={classes.gridItem} item xs={1} sm={1} md={1}>
                 <img className={classes.productImage} src={image} alt="" />
             </Grid>
@@ -87,8 +90,8 @@ const CartItem = ({ cartItem, background, removeItemFromCart, incrementQuantity,
             <Grid className={classes.gridItem} item xs={2} sm={2} md={2}>
                 <CurrencyFormat value={quantity * price} displayType={'text'} prefix={'$'}/>
             </Grid>
-        </>
-        )
+        </Grid>
+    )
 }
 
 export default extractProductConsumer(['removeItemFromCart', 'incrementQuantity', 'decrementQuantity'])(CartItem);

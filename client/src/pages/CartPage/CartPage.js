@@ -4,6 +4,7 @@ import Logo from '../../components/Logo/Logo';
 import { Typography, Button, withStyles } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import CartItemsList from '../../components/CartItemsList/CartItemsList';
+import CartCosts from '../../components/CartCosts/CartCosts';
 
 const styles = {
     button: {

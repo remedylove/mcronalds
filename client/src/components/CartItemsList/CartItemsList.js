@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { Grid, Container, Typography, withStyles } from '@material-ui/core'
+import { Grid, Container, Paper, withStyles } from '@material-ui/core'
 import CartItem from '../../components/CartItem/CartItem';
-import extractProductConsumer from '../ExtractProductConsumer/ExtractProductConsumer';
 import CartTableHeader from '../CartTableHeader/CartTableHeader';
+import CartCosts from '../../components/CartCosts/CartCosts';
+import extractProductConsumer from '../ExtractProductConsumer/ExtractProductConsumer';
 
 const styles = {
-    gridContainer: {
-        border: '1px solid #f2f2f2', 
-        borderRadius: '5px'
+    Paper: {
+        padding: '1em 1em .25em'
     }
 }
 
@@ -18,12 +18,18 @@ class CartItemsList extends Component {
         let background;
         return (
             <Container>
-                <Grid className={classes.gridContainer} container >
-                    <CartTableHeader />
-                    {cartItems.map((cartItem, index) => {
-                        index % 2 ? background = "#f2f2f2": background = "#fff";
-                        return <CartItem cartItem={cartItem} background={background} />
-                    })}
+                <Grid container spacing={2}>
+                    <Grid item md={9}>
+                        <Paper className={classes.Paper}>
+                            <CartTableHeader />
+                            {cartItems.map(cartItem => {
+                                return <CartItem cartItem={cartItem} />
+                            })}
+                        </Paper>
+                    </Grid>
+                    <Grid item md={3}>
+                        <CartCosts />
+                    </Grid>
                 </Grid>
             </Container>
         )
