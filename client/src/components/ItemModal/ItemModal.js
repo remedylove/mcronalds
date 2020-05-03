@@ -1,6 +1,6 @@
-import React, { useState, Component } from 'react';
+import React, { Component } from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { Typography, Button, makeStyles, withStyles } from '@material-ui/core';
+import { Typography, Button, withStyles } from '@material-ui/core';
 import CustomizeIngredient from '../CustomizeIngredient/CustomizeIngredient';
 import extractProductConsumer from '../ExtractProductConsumer/ExtractProductConsumer';
 import { v4 as uuid } from 'uuid';
@@ -54,7 +54,7 @@ class ItemModal extends Component {
     const { product } = this.state;
     product.id = uuid();
     console.log(product.id);
-    const { id, title, ingredients } = product;
+    const { title, ingredients } = product;
 
     console.log(this.state.product);
     console.log(this.props.product);

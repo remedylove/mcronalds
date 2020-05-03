@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Typography, Paper, IconButton, makeStyles } from '@material-ui/core';
+import { Grid, Typography, IconButton, makeStyles } from '@material-ui/core';
 import CurrencyFormat from 'react-currency-format';
 import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox';
 import AddBoxIcon from '@material-ui/icons/AddBox';

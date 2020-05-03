@@ -11,9 +11,7 @@ class Cart extends Component {
         const { cartItems } = this.props;
 
         let amount = 0;
-        cartItems.map(cartItem => {
-            amount += cartItem.quantity;
-        });
+        cartItems.map(cartItem => amount += cartItem.quantity);
         
         return (
             <div>

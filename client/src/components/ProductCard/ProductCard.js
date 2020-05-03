@@ -10,7 +10,6 @@ import { Typography, Button } from '@material-ui/core';
 import { withStyles } from "@material-ui/core/styles";
 import { Link } from 'react-router-dom';
 import ItemModal from '../ItemModal/ItemModal';
-import { v4 as uuid } from 'uuid';
 import extractProductConsumer from '../../components/ExtractProductConsumer/ExtractProductConsumer';
 
 const styles = theme => ({

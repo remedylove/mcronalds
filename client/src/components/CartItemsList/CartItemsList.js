@@ -15,7 +15,6 @@ class CartItemsList extends Component {
 
     render()    {
         const { cartItems, classes } = this.props;
-        let background;
         return (
             <Container>
                 <Grid container spacing={2}>
