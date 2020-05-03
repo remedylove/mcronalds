@@ -9,7 +9,6 @@ import CurrencyFormat from 'react-currency-format';
 import { Typography, Button } from '@material-ui/core';
 import { withStyles } from "@material-ui/core/styles";
 import { Link } from 'react-router-dom';
-import { ingredientsList } from '../../store';
 import ItemModal from '../ItemModal/ItemModal';
 import { v4 as uuid } from 'uuid';
 import extractProductConsumer from '../../components/ExtractProductConsumer/ExtractProductConsumer';
@@ -57,7 +56,6 @@ class ProductCard extends Component {
     super(props);
     this.state = {
       modal: false,
-      ingredientsList
     }    
   }
 

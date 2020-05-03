@@ -6,7 +6,6 @@ import CurrencyFormat from 'react-currency-format';
 import { Typography, Button } from '@material-ui/core';
 import { withStyles } from "@material-ui/core/styles";
 import { Link } from 'react-router-dom';
-import { ingredientsList } from '../../store';
 import extractProductConsumer from '../../components/ExtractProductConsumer/ExtractProductConsumer';
 
 const styles = theme => ({
@@ -48,12 +47,6 @@ const styles = theme => ({
 
 
 class RelatedProductCard extends Component {
-  constructor(props)  {
-    super(props);
-    this.state = {
-      ingredientsList
-    }    
-  }
 
   render()  {
     const { classes, product, handleDetail } = this.props;

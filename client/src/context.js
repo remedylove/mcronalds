@@ -1,6 +1,6 @@
 import React, { Component, createContext } from 'react';
-
-import storeProducts from './store';
+import axios from 'axios';
+// import storeProducts from './store';
 
 const ProductContext = createContext();
 
@@ -8,11 +8,21 @@ class ProductProvider extends Component {
     constructor(props)   {
         super(props);
         this.state = {
-            products: storeProducts,
+            products: {},
             detailProduct: {},
             categoryProducts: [],
-            cartItems: this.getCartItems()
+            cartItems: this.getCartItems(),
+            isReady: false
         };
+    }
+
+    componentDidMount() {
+        axios.get('/api/products')
+            .then(products => this.setState({products: products.data, isReady: true}))
+    }
+
+    componentDidUpdate()    {
+        // console.log(this.state.product);
     }
     
     getItemToDetails = title => {
@@ -110,8 +120,9 @@ class ProductProvider extends Component {
     }
 
     render() {
+        const { isReady } = this.state;
         return (
-            <ProductContext.Provider value={{
+            isReady && <ProductContext.Provider value={{
                 ...this.state,
                 handleDetail: this.handleDetail,
                 addItemToCart: this.addItemToCart,
