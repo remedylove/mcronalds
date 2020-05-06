@@ -17,7 +17,7 @@ function App() {
             <Route path="/" component={HomePage} exact/>
             <Route path="/create-order" component={CreateOrderPage} exact/>
             <Route path="/cart" component={CartPage} exact />
-            <Route path="/product-details/:id" component={ProductDetailsPage} exact/>
+            <Route path="/product-details/:title" component={ProductDetailsPage} exact/>
             <Route component={Error404Page} />
           </Switch>
         </Router>

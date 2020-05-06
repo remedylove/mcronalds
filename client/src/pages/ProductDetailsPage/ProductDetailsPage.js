@@ -7,17 +7,18 @@ import extractProductConsumer from '../../components/ExtractProductConsumer/Extr
 class ProductDetailsPage extends Component {
     constructor(props)  {
         super(props);
-        props.handleDetail(this.props.match.params.id)
+        props.handleDetail(this.props.match.params.title)
     }
 
     render() {
-        const { id } = this.props.match.params;
-        const { categoryProducts } = this.props;
-        const { title, description, calories, ingredients, imageDetails } = this.props.detailProduct;
+        const { title } = this.props.match.params;
+        const { categoryProducts, detailProduct } = this.props;
+        const { description, calories, ingredients, imageDetails } = detailProduct;
         return (
             <div>
                 <Logo />
-                <SingleProductView id={id} title={title} description={description} calories={calories} ingredients={ingredients} imageDetails={imageDetails}/>
+                {/* <SingleProductView title={title} description={description} calories={calories} ingredients={ingredients} imageDetails={imageDetails}/> */}
+                <SingleProductView title={title} detailProduct={detailProduct} />
                 <RelatedProducts products={categoryProducts}/>
             </div>
         );

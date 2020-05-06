@@ -8,11 +8,12 @@ class SingleProductView extends Component {
     }
 
     render() {
-        const { id, title, description, calories, ingredients, imageDetails } = this.props;
+        const { title, detailProduct } = this.props;
+        const { ingredients } = detailProduct;
         return (
             <div>
                 <React.Fragment>
-                    <ProductPresentation id={id} title={title} calories={calories} description={description} imageDetails={imageDetails} />
+                    <ProductPresentation title={title} detailProduct={detailProduct} />
                     <IngredientsList title={title} ingredients={ingredients}/>
                 </React.Fragment>
             </div>

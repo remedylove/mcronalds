@@ -21,9 +21,6 @@ class ProductProvider extends Component {
             .then(products => this.setState({products: products.data, isReady: true}))
     }
 
-    componentDidUpdate()    {
-        // console.log(this.state.product);
-    }
     
     getItemToDetails = title => {
         const product = this.state.products.find(item => item.title.toLowerCase() === title.toLowerCase());
@@ -129,7 +126,8 @@ class ProductProvider extends Component {
                 removeItemFromCart: this.removeItemFromCart,
                 addProductToCart: this.addProductToCart,
                 incrementQuantity: this.incrementQuantity,
-                decrementQuantity: this.decrementQuantity
+                decrementQuantity: this.decrementQuantity,
+                getItemToDetails: this.getItemToDetails
             }}>
                 {this.props.children}
             </ProductContext.Provider>

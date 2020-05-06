@@ -30,6 +30,7 @@ const styles = theme => ({
   Link: {
     // // textDecoration: 'none',
     color: 'inherit',
+    textTransform: 'capitalize',
     '&:hover':  {
       textDecoration: 'none',
       color: 'inherit'
@@ -66,8 +67,7 @@ class ProductCard extends Component {
 
   render()  {
     const { classes, product, handleDetail, addItemToCart } = this.props;
-    // product.id = uuid();
-    const { id, title, image } = product;
+    const { id, title, imageSrc } = product;
 
     return (
       <React.Fragment>
@@ -89,10 +89,10 @@ class ProductCard extends Component {
               handleDetail(title);
             }}
           >
-            <Link to={`/product-details/${title.toLowerCase()}`}>
+            <Link to={`/product-details/${title}`}>
               <CardMedia
                 className={classes.media}
-                image={image}
+                image={require(imageSrc)}                  
                 title={title}
               />
             </Link>
