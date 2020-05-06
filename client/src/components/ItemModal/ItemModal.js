@@ -37,8 +37,6 @@ class ItemModal extends Component {
     }
   }
 
-  omit = (prop, { [prop]: _, ...rest }) => rest;
-
   addIngredient = ingredient => {
     const { product } = this.state;
     product['customization']['added'].push(ingredient);
@@ -52,12 +50,9 @@ class ItemModal extends Component {
   render()  {
     const { classes, modal, toggle, addProductToCart } = this.props;
     const { product } = this.state;
-    product.id = uuid();
-    console.log(product.id);
+    product._id = uuid();
     const { title, ingredients } = product;
 
-    console.log(this.state.product);
-    console.log(this.props.product);
     return (
       <Modal
           className="modal-lg"

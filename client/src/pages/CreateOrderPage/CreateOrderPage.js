@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Typography, withStyles } from '@material-ui/core';
+import { Typography, withStyles, CircularProgress } from '@material-ui/core';
 import ProductsList from '../../components/ProductsList/ProductsList';
 import ChoiceBar from '../../components/ChoiceBar/ChoiceBar';
 import { categories } from '../../store';
@@ -32,10 +32,11 @@ class CreateOrderPage extends Component  {
 
     render()    {
         const { currentCategory, cartCounter } = this.state;
-        const { classes, products, handleDetail } = this.props;
+        const { classes, products, handleDetail, isReady } = this.props;
         
         return(
-            <div>
+            isReady
+            ? <div>
                 <Logo cartCounter={cartCounter}/>
                 <ChoiceBar 
                     categories={categories}
@@ -47,8 +48,12 @@ class CreateOrderPage extends Component  {
                 </Typography>
                 <ProductsList products={products} currentCategory={currentCategory} handleDetail={handleDetail} />
             </div>
+            : <>
+                <CircularProgress style={{margin: 'auto'}} color="primary" />
+                <Typography>Fetching data...</Typography>
+              </>
         );
     }
 }
 
-export default extractProductConsumer(['handleDetail', 'products', 'cartItems'])(withStyles(styles)(CreateOrderPage));
+export default extractProductConsumer(['handleDetail', 'products', 'cartItems', 'isReady'])(withStyles(styles)(CreateOrderPage));

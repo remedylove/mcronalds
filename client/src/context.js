@@ -1,6 +1,6 @@
 import React, { Component, createContext } from 'react';
 import axios from 'axios';
-// import storeProducts from './store';
+import { Redirect } from 'react-router-dom';
 
 const ProductContext = createContext();
 
@@ -20,15 +20,14 @@ class ProductProvider extends Component {
         axios.get('/api/products')
             .then(products => this.setState({products: products.data, isReady: true}))
     }
-
     
     getItemToDetails = title => {
         const product = this.state.products.find(item => item.title.toLowerCase() === title.toLowerCase());
-        return product;
+        return product ? product : <Redirect to="/404" />;
     }
 
     getItem = id => {
-        const product = this.state.products.find(item => item.id === id);
+        const product = this.state.products.find(item => item._id === id);
         return product;
     }
 
@@ -38,6 +37,7 @@ class ProductProvider extends Component {
     }
 
     handleDetail = title =>    {
+        console.log(this.state.products);
         const detailProduct = this.getItemToDetails(title);
         const categoryProducts = this.getCategoryProducts(detailProduct);
         this.setState({
@@ -49,7 +49,7 @@ class ProductProvider extends Component {
 
     incrementQuantity = id => {
         const { cartItems } = this.state;
-        const cartProduct = cartItems.find(item => item.id === id);
+        const cartProduct = cartItems.find(item => item._id === id);
         cartProduct.quantity += 1;
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
         this.setState({
@@ -59,7 +59,7 @@ class ProductProvider extends Component {
 
     decrementQuantity = id => {
         const { cartItems } = this.state;
-        const cartProduct = cartItems.find(item => item.id === id);
+        const cartProduct = cartItems.find(item => item._id === id);
         if(cartProduct.quantity >= 2) {
             cartProduct.quantity -= 1;
             localStorage.setItem('cartItems', JSON.stringify(cartItems));
@@ -70,10 +70,10 @@ class ProductProvider extends Component {
     }
 
     addItemToCart = id => {
-        console.log('wtf')
+        console.log(id);
         const product = this.getItem(id);
         const { cartItems } = this.state;
-        const isInCartYet = cartItems.find(item => item.id === id);
+        const isInCartYet = cartItems.find(item => item._id === id);
         console.log(isInCartYet);
         if(isInCartYet) {
             isInCartYet.quantity += 1;
@@ -103,7 +103,7 @@ class ProductProvider extends Component {
 
     removeItemFromCart = id => {
         const { cartItems } = this.state;
-        const updatedCartItems = cartItems.filter(item => item.id !== id);
+        const updatedCartItems = cartItems.filter(item => item._id !== id);
         localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
         this.setState({
             cartItems: this.getCartItems()
@@ -119,7 +119,7 @@ class ProductProvider extends Component {
     render() {
         const { isReady } = this.state;
         return (
-            isReady && <ProductContext.Provider value={{
+            <ProductContext.Provider value={{
                 ...this.state,
                 handleDetail: this.handleDetail,
                 addItemToCart: this.addItemToCart,

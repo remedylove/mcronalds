@@ -10,14 +10,16 @@ class ProductDetailsPage extends Component {
         props.handleDetail(this.props.match.params.title)
     }
 
+    componentDidUpdate() {
+        window.scrollTo({ top: 0, behavior: 'smooth'});
+    }
+
     render() {
         const { title } = this.props.match.params;
         const { categoryProducts, detailProduct } = this.props;
-        const { description, calories, ingredients, imageDetails } = detailProduct;
         return (
             <div>
                 <Logo />
-                {/* <SingleProductView title={title} description={description} calories={calories} ingredients={ingredients} imageDetails={imageDetails}/> */}
                 <SingleProductView title={title} detailProduct={detailProduct} />
                 <RelatedProducts products={categoryProducts}/>
             </div>

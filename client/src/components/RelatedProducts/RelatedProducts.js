@@ -18,7 +18,7 @@ const styles = {
 
 const useStyles = makeStyles(styles);
 
-const RelatedProducts = ({ products, }) => {
+const RelatedProducts = ({ products }) => {
     const classes = useStyles();
 
     return (
@@ -26,9 +26,9 @@ const RelatedProducts = ({ products, }) => {
             <Typography className={classes.Typography} variant="h4">Related Products</Typography>
             <Grid className={classes.Grid} container justify="center" spacing={3}>
                 {products.map(product => (
-                    <Grid key={product.id} item xs={10} sm={5} md={3}>
-                        <RelatedProductCard key={product.id} product={product} />
-                    </ Grid>
+                    <Grid key={product._id} item xs={10} sm={5} md={3}>
+                        <RelatedProductCard key={product._id} product={product} />
+                    </Grid>
                 ))}
             </Grid>
         </div>

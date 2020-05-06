@@ -21,7 +21,8 @@ const styles = theme => ({
     },
   },
   Typography: {
-    cursor: 'pointer'
+    cursor: 'pointer',
+    textTransform: 'capitalize'
   },
   Link: {
     // // textDecoration: 'none',
@@ -58,7 +59,7 @@ class RelatedProductCard extends Component {
           <CardHeader
             className={classes.CardHeader}
             align="left"
-            title={<Link className={classes.Link} to={`/product-details/${title.toLowerCase()}`}><Typography className={classes.Typography} variant="h6">{title}</Typography></Link>}
+            title={<Link className={classes.Link} to={`/product-details/${title}`}><Typography className={classes.Typography} variant="h6">{title}</Typography></Link>}
             subheader={<CurrencyFormat value={4.99} displayType={'text'} prefix={'$'}/>}
           />
           <div 
@@ -67,10 +68,10 @@ class RelatedProductCard extends Component {
               handleDetail(title.toLowerCase());
             }}
           >
-            <Link to={`/product-details/${title.toLowerCase()}`}>
+            <Link to={`/product-details/${title}`}>
               <CardMedia
                 className={classes.media}
-                image={image}
+                image={require(`../../assets/${title}.jpg`)}
                 title={title}
               />
             </Link>

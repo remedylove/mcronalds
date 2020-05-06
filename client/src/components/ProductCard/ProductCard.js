@@ -67,7 +67,7 @@ class ProductCard extends Component {
 
   render()  {
     const { classes, product, handleDetail, addItemToCart } = this.props;
-    const { id, title, imageSrc } = product;
+    const { _id, title } = product;
 
     return (
       <React.Fragment>
@@ -75,7 +75,7 @@ class ProductCard extends Component {
           <CardHeader
             className={classes.CardHeader}
             action={
-              <IconButton aria-label="settings" onClick={e => addItemToCart(id)}>
+              <IconButton aria-label="settings" onClick={e => addItemToCart(_id)}>
                 <AddCircleIcon className={classes.add} fontSize="large"/>
               </IconButton>
             }
@@ -92,7 +92,7 @@ class ProductCard extends Component {
             <Link to={`/product-details/${title}`}>
               <CardMedia
                 className={classes.media}
-                image={require(imageSrc)}                  
+                image={require(`../../assets/${title}.jpg`)}                  
                 title={title}
               />
             </Link>

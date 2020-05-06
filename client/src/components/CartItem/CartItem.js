@@ -55,7 +55,7 @@ const useStyles = makeStyles({
 const CartItem = ({ cartItem, removeItemFromCart, incrementQuantity, decrementQuantity }) => {
 
     const classes = useStyles();
-    const { id, title, price, customization, image, quantity } = cartItem;
+    const { _id, title, price, customization, image, quantity } = cartItem;
     
     return (
         <Grid className={classes.gridContainer} container>
@@ -66,24 +66,24 @@ const CartItem = ({ cartItem, removeItemFromCart, incrementQuantity, decrementQu
                 <Typography variant="body1" align="center">{title}</Typography>
             </Grid>
             <Grid className={classes.gridItem} item xs={1} sm={1} md={1}>
-                <IconButton className={classes.minusButton} onClick={e => decrementQuantity(id)}>
+                <IconButton className={classes.minusButton} onClick={e => decrementQuantity(_id)}>
                     <IndeterminateCheckBoxIcon className={classes.minusIcon} fontSize="large" />
                 </IconButton>
                 <Typography variant="body1" align="center">{quantity}</Typography>
-                <IconButton className={classes.plusButton} onClick={e => incrementQuantity(id)}>
+                <IconButton className={classes.plusButton} onClick={e => incrementQuantity(_id)}>
                     <AddBoxIcon className={classes.plusIcon} fontSize="large" />
                 </IconButton>
             </Grid>
             <Grid className={classes.customizations} item xs={4} sm={4} md={4}>
                 <div className={classes.gridItem}>
-                    {Boolean(customization.added.length) && <Typography variant="body1">Added: {customization.added.join(', ')}</Typography>}
+                    {!!customization.added.length && <Typography variant="body1">Added: {customization.added.join(', ')}</Typography>}
                 </div>
                 <div className={classes.gridItem}>
-                    {Boolean(customization.removed.length) && <Typography variant="body1">Removed: {customization.removed.join(', ')}</Typography>}
+                    {!!customization.removed.length && <Typography variant="body1">Removed: {customization.removed.join(', ')}</Typography>}
                 </div>
             </Grid>
             <Grid className={classes.gridItem} item xs={2} sm={2} md={2}>
-                <IconButton onClick={e => removeItemFromCart(id)} >
+                <IconButton onClick={e => removeItemFromCart(_id)} >
                     <DeleteIcon style={{color: 'blue'}} fontSize="large" />
                 </IconButton>
             </Grid>
