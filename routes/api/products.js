@@ -15,13 +15,19 @@ router.post('/', (req, res) => {
         description: req.body.description,
         calories: req.body.calories,
         ingredients: req.body.ingredients,
-        image: req.body.image,
-        imageDetails: req.body.imageDetails,
+        imageSrc: req.body.imageSrc,
+        detailsImageSrc: req.body.detailsImageSrc,
         price: req.body.price,
         category: req.body.category
     });
 
     newProduct.save().then(product => res.json(product));
+});
+
+router.delete('/:id', (req,res) => {
+    Product.findById(req.params.id)
+    .then(product => product.remove().then(() => res.json({success: true})))
+    .catch(err => res.status(404).json({success: false}));
 });
 
 module.exports = router;

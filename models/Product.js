@@ -16,10 +16,10 @@ const ProductSchema = new Schema({
         added: [String],
         removed: [String]
     },
-    image: {
+    imageSrc: {
         type: String
     },
-    imageDetails: {
+    detailsImageSrc: {
         type: String
     },
     price: {
