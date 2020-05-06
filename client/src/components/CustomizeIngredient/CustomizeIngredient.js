@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Typography, Button } from '@material-ui/core';
 import { Grid, withStyles } from '@material-ui/core';
-import { array } from 'prop-types';
 import extractProductConsumer from '../ExtractProductConsumer/ExtractProductConsumer';
 
 const styles = theme =>  ({

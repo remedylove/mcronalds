@@ -3,7 +3,7 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CurrencyFormat from 'react-currency-format';
-import { Typography, Button } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import { withStyles } from "@material-ui/core/styles";
 import { Link } from 'react-router-dom';
 import extractProductConsumer from '../../components/ExtractProductConsumer/ExtractProductConsumer';
@@ -50,7 +50,7 @@ class RelatedProductCard extends Component {
 
   render()  {
     const { classes, product, handleDetail } = this.props;
-    const { id, title, image } = product;
+    const { title, image } = product;
 
     return (
       <React.Fragment>

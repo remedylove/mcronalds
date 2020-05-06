@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper, Typography, Container, Button, makeStyles } from '@material-ui/core';
+import { Paper, Typography, Button, makeStyles } from '@material-ui/core';
 import extractProductConsumer from '../ExtractProductConsumer/ExtractProductConsumer'
 
 const useStyles = makeStyles({
