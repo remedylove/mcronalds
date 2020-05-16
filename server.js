@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const products = require('./routes/api/products');
+const orders = require('./routes/api/orders');
 
 const app = express();
 
@@ -18,6 +19,7 @@ mongoose
     .catch(err => console.log(err));
 
 app.use('/api/products', products);
+app.use('/api/orders', orders);
 
 const port = process.env.PORT || 5000;
 
