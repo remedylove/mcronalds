@@ -3,13 +3,16 @@ const Schema = mongoose.Schema;
 
 const ProductSchema = new Schema({
     title: {
-        type: String
+        type: String,
+        required: [true, 'Product title required']
     },
     description: {
-        type: String
+        type: String,
+        required: [true, 'Product description required']
     },
     calories: {
-        type: Number
+        type: Number,
+        required: [true, 'Product calories value required']
     },
     ingredients: [String],
     customization: {
@@ -17,16 +20,19 @@ const ProductSchema = new Schema({
         removed: [String]
     },
     imageSrc: {
-        type: String
+        type: String,
+        required: [true, 'Product image required']
     },
     detailsImageSrc: {
         type: String
     },
     price: {
-        type: Number
+        type: Number,
+        required: [true, 'Product price required']
     },
     category: {
-        type: String
+        type: String,
+        required: [true, 'Product have to be added to category']
     }
 });
 
