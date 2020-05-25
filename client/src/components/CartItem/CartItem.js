@@ -24,6 +24,9 @@ const useStyles = makeStyles({
     productImage: {
         width: '100%'
     },
+    productName: {
+        textTransform: 'capitalize'
+    },
     minusButton : {
         '&:hover': {
             '& $minusIcon': {
@@ -47,23 +50,23 @@ const useStyles = makeStyles({
         color: '#32cd32',
         transition: '.5s ease'
     },
-    removeIcon: {
-
+    deletIcon: {
+        color: 'blue'
     }
 });
 
 const CartItem = ({ cartItem, removeItemFromCart, incrementQuantity, decrementQuantity }) => {
 
     const classes = useStyles();
-    const { _id, title, price, customization, image, quantity } = cartItem;
+    const { _id, title, price, customization, quantity } = cartItem;
     
     return (
         <Grid className={classes.gridContainer} container>
             <Grid className={classes.gridItem} item xs={1} sm={1} md={1}>
-                <img className={classes.productImage} src={image} alt="" />
+                <img className={classes.productImage} src={require(`../../assets/${title}.jpg`)} alt="" />
             </Grid>
             <Grid className={classes.gridItem} item xs={2} sm={2} md={2}>
-                <Typography variant="body1" align="center">{title}</Typography>
+                <Typography className={classes.productName} variant="body1" align="center">{title}</Typography>
             </Grid>
             <Grid className={classes.gridItem} item xs={1} sm={1} md={1}>
                 <IconButton className={classes.minusButton} onClick={e => decrementQuantity(_id)}>
@@ -84,7 +87,7 @@ const CartItem = ({ cartItem, removeItemFromCart, incrementQuantity, decrementQu
             </Grid>
             <Grid className={classes.gridItem} item xs={2} sm={2} md={2}>
                 <IconButton onClick={e => removeItemFromCart(_id)} >
-                    <DeleteIcon style={{color: 'blue'}} fontSize="large" />
+                    <DeleteIcon className={classes.deletIcon} fontSize="large" />
                 </IconButton>
             </Grid>
             <Grid className={classes.gridItem} item xs={2} sm={2} md={2}>

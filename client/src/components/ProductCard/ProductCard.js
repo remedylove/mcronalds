@@ -67,7 +67,7 @@ class ProductCard extends Component {
 
   render()  {
     const { classes, product, handleDetail, addItemToCart } = this.props;
-    const { _id, title } = product;
+    const { _id, title, imageSrc } = product;
 
     return (
       <React.Fragment>
@@ -92,7 +92,7 @@ class ProductCard extends Component {
             <Link to={`/product-details/${title}`}>
               <CardMedia
                 className={classes.media}
-                image={require(`../../assets/${title}.jpg`)}                  
+                image={process.env.PUBLIC_URL + imageSrc} 
                 title={title}
               />
             </Link>
