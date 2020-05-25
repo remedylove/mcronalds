@@ -13,7 +13,7 @@ class SingleProductView extends Component {
         return (
             <div>
                 <React.Fragment>
-                    <ProductPresentation title={title} detailProduct={detailProduct} />
+                    <ProductPresentation />
                     <IngredientsList title={title} ingredients={ingredients}/>
                 </React.Fragment>
             </div>

@@ -9,7 +9,7 @@ const orders = require('./routes/api/orders');
 const app = express();
 
 app.use(bodyParser.json());
-app.use(cors());
+// app.use(cors());
 
 const db = require('./config/keys').mongoURI;
 
