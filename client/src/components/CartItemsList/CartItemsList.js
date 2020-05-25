@@ -14,7 +14,7 @@ const styles = {
 class CartItemsList extends Component {
 
     render()    {
-        const { cartItems, classes } = this.props;
+        const { cartItems, classes, addOrder } = this.props;
         return (
             <Container>
                 <Grid container spacing={2}>
@@ -27,7 +27,7 @@ class CartItemsList extends Component {
                         </Paper>
                     </Grid>
                     <Grid item md={3}>
-                        <CartCosts />
+                        <CartCosts addOrder={addOrder} />
                     </Grid>
                 </Grid>
             </Container>

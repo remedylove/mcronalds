@@ -10,6 +10,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
+    console.log(req.body.products);
     const newOrder = new Order({
         products: req.body.products
     });
