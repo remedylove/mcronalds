@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios';
 import extractProductConsumer from '../../components/ExtractProductConsumer/ExtractProductConsumer'
 import Logo from '../../components/Logo/Logo';
 import { Typography, Button, withStyles } from '@material-ui/core';
@@ -21,6 +22,17 @@ class CartPage extends Component {
         }
     }
 
+    addOrder = cartItems =>    {
+        
+        const itemCarts = {
+            products: cartItems
+        }
+
+        axios.post('/api/orders', itemCarts)
+        .then(console.log)
+        .catch(console.log)
+    }
+
     render() {
         const { cartItems } = this.props;
         const { classes } = this.props;
@@ -30,7 +42,7 @@ class CartPage extends Component {
                 {Boolean(cartItems.length) 
                     ? <>
                         <Typography style={{margin: '.25em auto', fontWeight: 'bold', fontFamily: 'Permanent Marker'}} variant="h2">Your cart</Typography>
-                        <CartItemsList />
+                        <CartItemsList addOrder={this.addOrder} />
                       </>
                     : <>
                         <Typography style={{margin: '.25em auto', fontWeight: 'bold', fontFamily: 'Permanent Marker'}} variant="h2">Your cart is empty</Typography>
