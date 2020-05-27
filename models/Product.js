@@ -1,39 +1,18 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const Joi = require('@hapi/joi');
 
-const ProductSchema = new Schema({
-    title: {
-        type: String,
-        required: [true, 'Product title required']
-    },
-    description: {
-        type: String,
-        required: [true, 'Product description required']
-    },
-    calories: {
-        type: Number,
-        required: [true, 'Product calories value required']
-    },
-    ingredients: [String],
-    customization: {
-        added: [String],
-        removed: [String]
-    },
-    imageSrc: {
-        type: String,
-        required: [true, 'Product image required']
-    },
-    detailsImageSrc: {
-        type: String
-    },
-    price: {
-        type: Number,
-        required: [true, 'Product price required']
-    },
-    category: {
-        type: String,
-        required: [true, 'Product have to be added to category']
-    }
+const ProductSchema = Joi.object().keys({
+    title: Joi.string().required(),
+    description: Joi.string().required(),
+    calories: Joi.number().required(),
+    ingredients: Joi.array().items(Joi.string()),
+    customization: Joi.object().keys({
+        added: Joi.array().items(Joi.string()),
+        removed: Joi.array().items(Joi.string())
+    }),
+    imageSrc: Joi.string().required(),
+    detailsImageSrc: Joi.string(),
+    price: Joi.number().required(),
+    category: Joi.string().required()
 });
 
-module.exports = Product = mongoose.model('product', ProductSchema);
+module.exports = ProductSchema;
