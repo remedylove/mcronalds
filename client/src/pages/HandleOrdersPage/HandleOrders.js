@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import StaffNavbar from '../../components/StaffNavbar/StaffNavbar';
 import OrdersList from '../../components/OrdersList/OrdersList';
 
 class HandleOrders extends Component {
@@ -45,7 +46,10 @@ class HandleOrders extends Component {
         const { orders, isReady } = this.state;
         
         return (
-            <OrdersList orders={orders} isReady={isReady} handleOrder={this.handleOrder} cancelOrder={this.cancelOrder} />
+            <>
+                <StaffNavbar />
+                <OrdersList orders={orders} isReady={isReady} handleOrder={this.handleOrder} cancelOrder={this.cancelOrder} />
+            </>
         )
     }
 }
