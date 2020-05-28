@@ -6,6 +6,9 @@ const joigoose = require('joigoose')(mongoose);
 
 const ProductSchema = require('../../models/Product');
 
+let mongooseProductSchema = new mongoose.Schema(joigoose.convert(ProductSchema));
+Product = mongoose.model("Product", mongooseProductSchema);
+
 router.get('/', (req, res) => {
     Product.find()
         .sort({ title: -1 })
@@ -13,8 +16,6 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', middleware(ProductSchema), (req, res, next) => {
-    let mongooseProductSchema = new mongoose.Schema(joigoose.convert(ProductSchema));
-    Product = mongoose.model("Product", mongooseProductSchema);
     const newProduct = new Product({
         title: req.body.title,
         description: req.body.description,

@@ -5,7 +5,6 @@ const middleware = (schema) => {
       const { error } = schema.validate(req.body);
       const valid = error == null;
       if (valid) {
-        console.log('next');
         next();
       } else {
         
