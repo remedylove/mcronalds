@@ -24,6 +24,25 @@ router.post('/', middleware(OrderSchema), (req, res, next) => {
     order.save().then(order => res.json(order));
 });
 
+router.put('/:id', (req,res) => {
+
+    const handledOrder = {
+        handled: req.body.handled
+    }
+
+    Order.findByIdAndUpdate(
+        req.params.id,
+        handledOrder,
+        (err) =>   {
+            if (err)    {
+                res.json({
+                    sucess: false
+                })
+            }
+        }
+        ).then(handledOrder => res.json(handledOrder));
+});
+
 router.delete('/:id', (req,res) => {
     Order.findById(req.params.id)
     .then(order => order.remove().then(() => res.json({success: true})))

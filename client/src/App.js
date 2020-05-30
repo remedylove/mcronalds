@@ -7,6 +7,7 @@ import CreateOrderPage from './pages/CreateOrderPage/CreateOrderPage';
 import ProductDetailsPage from './pages/ProductDetailsPage/ProductDetailsPage';
 import CartPage from './pages/CartPage/CartPage';
 import Error404Page from './pages/404Page/404Page';
+import HandleOrders from './pages/HandleOrdersPage/HandleOrders';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
             <Route path="/create-order" component={CreateOrderPage} exact/>
             <Route path="/cart" component={CartPage} exact />
             <Route path="/product-details/:title" component={ProductDetailsPage} exact/>
+            <Route path="/handle-orders" component={HandleOrders} exact />
             <Route path="/404" component={Error404Page} />
             <Redirect to='/404' />
           </Switch>
