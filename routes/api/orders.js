@@ -1,7 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const middleware = require('../../middleware');
+const mongoose = require('mongoose');
+const joigoose = require('joigoose')(mongoose);
 
-const Order = require('../../models/Order');
+const OrderSchema = require('../../models/Order');
+
+let mongooseOrderSchema = new mongoose.Schema(joigoose.convert(OrderSchema));
+Order = mongoose.model("Order", mongooseOrderSchema);
 
 router.get('/', (req, res) => {
     Order.find()
@@ -9,13 +15,13 @@ router.get('/', (req, res) => {
         .then(orders => res.json(orders));
 });
 
-router.post('/', (req, res) => {
+router.post('/', middleware(OrderSchema), (req, res, next) => {
     console.log(req.body.products);
-    const newOrder = new Order({
+    const order = new Order({
         products: req.body.products
     });
 
-    newOrder.save().then(order => res.json());
+    order.save().then(order => res.json(order));
 });
 
 router.put('/:id', (req,res) => {

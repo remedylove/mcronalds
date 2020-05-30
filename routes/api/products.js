@@ -1,7 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const middleware = require('../../middleware');
+const mongoose = require('mongoose');
+const joigoose = require('joigoose')(mongoose);
 
-const Product = require('../../models/Product');
+const ProductSchema = require('../../models/Product');
+
+let mongooseProductSchema = new mongoose.Schema(joigoose.convert(ProductSchema));
+Product = mongoose.model("Product", mongooseProductSchema);
 
 router.get('/', (req, res) => {
     Product.find()
@@ -9,7 +15,7 @@ router.get('/', (req, res) => {
         .then(products => res.json(products));
 });
 
-router.post('/', (req, res) => {
+router.post('/', middleware(ProductSchema), (req, res, next) => {
     const newProduct = new Product({
         title: req.body.title,
         description: req.body.description,

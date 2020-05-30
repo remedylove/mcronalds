@@ -1,17 +1,11 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const OrderedProduct = require('../models/OrderedProduct');
+const Joi = require('@hapi/joi');
 
-const OrderSchema = new Schema({
-    products: [OrderedProduct.schema],
-    handled:    {
-        type: Boolean,
-        default: false
-    },
-    date: {
-        type: Date,
-        default: Date.now
-    }
+const OrderedProductschema = require('../models/OrderedProduct');
+
+const OrderSchema = Joi.object().keys({
+    products: Joi.array().items(OrderedProductschema),
+    handled: Joi.boolean().default(false),
+    date: Joi.date().default(Date.now)
 });
 
-module.exports = Order = mongoose.model('order', OrderSchema);
+module.exports = OrderSchema;
