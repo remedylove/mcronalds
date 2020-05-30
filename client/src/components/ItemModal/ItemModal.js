@@ -3,7 +3,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Typography, Button, withStyles } from '@material-ui/core';
 import CustomizeIngredient from '../CustomizeIngredient/CustomizeIngredient';
 import extractProductConsumer from '../ExtractProductConsumer/ExtractProductConsumer';
-import { ObjectId } from '../../objectIdGenerator';
+import { v4 as uuid } from 'uuid';
 
 const styles = {
   buttonWrapper: {
@@ -37,20 +37,25 @@ class ItemModal extends Component {
     }
   }
 
-  addIngredient = ingredient => {
+  addIngredient = (ingredient, array) => {
     const { product } = this.state;
-    product['customization']['added'].push(ingredient);
+    product['customization'][array].push(ingredient);
   }
 
-  removeIngredient = ingredient =>  {
+  removeIngredient = (ingredient, array) =>  {
     const { product } = this.state;
-    product['customization']['removed'].push(ingredient);
+    const index = product['customization'][array].indexOf(ingredient);
+    if(index > -1)  {
+      product['customization'][array].splice(index, 1);
+      return false;
+    }
+    return true;
   }
 
   render()  {
     const { classes, modal, toggle, addProductToCart } = this.props;
     const { product } = this.state;
-    product._id = ObjectId();
+    product._id = uuid();
     const { title, ingredients } = product;
 
     return (

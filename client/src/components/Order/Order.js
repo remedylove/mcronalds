@@ -3,7 +3,6 @@ import { Paper, Typography, Grid, IconButton, makeStyles } from '@material-ui/co
 import DoneIcon from '@material-ui/icons/Done';
 import ClearIcon from '@material-ui/icons/Clear';
 import OrderedProduct from '../OrderedProduct/OrderedProduct';
-import { green } from '@material-ui/core/colors';
 
 const useStyles = makeStyles({
     paperOrder: {
@@ -42,7 +41,7 @@ const useStyles = makeStyles({
     iconsWrapper: {
         display: 'flex', 
         justifyContent: 'flex-end', 
-        padding: '0 5em',
+        padding: '0 4em',
     },
     doneIcon: {
         color: 'green',
@@ -111,4 +110,4 @@ const Order = ({ index, order, handleOrder, cancelOrder }) => {
     );
 }
 
-export default Order
+export default Order;
