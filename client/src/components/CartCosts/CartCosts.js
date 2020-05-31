@@ -1,6 +1,7 @@
 import React from 'react';
 import { Paper, Typography, Button, makeStyles } from '@material-ui/core';
-import extractProductConsumer from '../ExtractProductConsumer/ExtractProductConsumer'
+import extractProductConsumer from '../ExtractProductConsumer/ExtractProductConsumer';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles({
     container: {
@@ -55,3 +56,9 @@ const CartCosts = ({ cartItems }) => {
 }
 
 export default extractProductConsumer(['cartItems'])(CartCosts);
+
+CartCosts.propTypes = {
+    //cartItems: PropTypes.object,
+    //quantity: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object]),
+    //price: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object]),
+}

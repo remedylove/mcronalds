@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Grid, Typography, CircularProgress, makeStyles } from '@material-ui/core';
+import PropTypes from 'prop-types';
 
 const styles = {
     Typography: {
@@ -42,3 +43,7 @@ const IngredientsList = ({ title, ingredients }) => {
 }
 
 export default IngredientsList;
+
+IngredientsList.propTypes = {
+    title: PropTypes.string,
+}

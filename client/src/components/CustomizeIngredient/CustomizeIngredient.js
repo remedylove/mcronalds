@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Typography, Button } from '@material-ui/core';
 import { Grid, withStyles } from '@material-ui/core';
 import extractProductConsumer from '../ExtractProductConsumer/ExtractProductConsumer';
+import PropTypes from 'prop-types';
 
 const styles = theme =>  ({
     outerContainer: {
@@ -105,3 +106,8 @@ class CustomizeIngredient extends Component {
 }
 
 export default extractProductConsumer([''])(withStyles(styles)(CustomizeIngredient));
+
+CustomizeIngredient.propTypes = {
+    counter: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    ingredient: PropTypes.string,
+}

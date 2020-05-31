@@ -7,6 +7,7 @@ import YouTubeIcon from '@material-ui/icons/YouTube';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import IconButton from '@material-ui/core/IconButton';
 import Cart from '../Cart/Cart';
+import PropTypes from 'prop-types';
 
 const styles = {
     outerContainer: {

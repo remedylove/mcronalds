@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Grid, Typography, makeStyles } from '@material-ui/core';
 import CurrencyFormat from 'react-currency-format';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles({
     container: {
@@ -46,3 +47,8 @@ const ProductPresentation = ({ title, detailProduct }) => {
 }
 
 export default ProductPresentation;
+
+ProductPresentation.propTypes = {
+    title: PropTypes.string,
+    description: PropTypes.string,
+}
