@@ -121,4 +121,5 @@ export default extractProductConsumer(['handleDetail', 'addItemToCart'])(withSty
 ProductCard.propTypes = {
   _id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   title: PropTypes.string,
+  image: PropTypes.string,
 }

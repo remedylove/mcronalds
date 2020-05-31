@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ProductPresentation from '../ProductPresentation/ProductPresentation';
 import IngredientsList from '../IngredientsList/IngredientsList';
 import PropTypes from 'prop-types';
+
 class SingleProductView extends Component {
     constructor(props)   {
         super(props);

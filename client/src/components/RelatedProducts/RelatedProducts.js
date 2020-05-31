@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography, Grid, makeStyles } from '@material-ui/core';
 import RelatedProductCard from '../RelatedProductCard/RelatedProductCard';
-
+import PropTypes from 'prop-types';
 const styles = {
     Typography: {
         fontWeight: 'bold'
@@ -33,6 +33,11 @@ const RelatedProducts = ({ products }) => {
             </Grid>
         </div>
     );
+}
+
+RelatedProducts.propTypes = {
+    key: PropTypes.string,
+    product: PropTypes.object,
 }
 
 export default RelatedProducts;

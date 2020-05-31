@@ -36,4 +36,9 @@ const ProductsList = ({ products, currentCategory }) => {
     );
 }
 
+ProductsList.propTypes = {
+    key: PropTypes.string,
+    product: PropTypes.string,
+}
+
 export default ProductsList;

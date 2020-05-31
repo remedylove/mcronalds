@@ -58,7 +58,7 @@ const CartCosts = ({ cartItems }) => {
 export default extractProductConsumer(['cartItems'])(CartCosts);
 
 CartCosts.propTypes = {
-    //cartItems: PropTypes.object,
-    //quantity: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object]),
-    //price: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object]),
+    cartItems: PropTypes.array,
+    quantity: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object]),
+    price: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object]),
 }
