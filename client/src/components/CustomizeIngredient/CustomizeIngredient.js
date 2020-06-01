@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Typography, Button } from '@material-ui/core';
-import { Grid, withStyles } from '@material-ui/core';
-import extractProductConsumer from '../ExtractProductConsumer/ExtractProductConsumer';
 import { Grid, Typography, Button, withStyles } from '@material-ui/core';
+import extractProductConsumer from '../ExtractProductConsumer/ExtractProductConsumer';
 import PropTypes from 'prop-types';
 
 const styles = theme =>  ({

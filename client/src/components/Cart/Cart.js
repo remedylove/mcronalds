@@ -28,8 +28,8 @@ class Cart extends Component {
     }
 }
 
-export default extractProductConsumer(['cartItems'])(Cart);
-
 Cart.propTypes = {
     amount: PropTypes.oneOf([PropTypes.number, PropTypes.string]),
 }
+
+export default extractProductConsumer(['cartItems'])(Cart);

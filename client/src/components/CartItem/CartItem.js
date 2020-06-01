@@ -98,8 +98,6 @@ const CartItem = ({ cartItem, removeItemFromCart, incrementQuantity, decrementQu
     )
 }
 
-export default extractProductConsumer(['removeItemFromCart', 'incrementQuantity', 'decrementQuantity'])(CartItem);
-
 CartItem.propTypes = {
     _id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     title: PropTypes.string,
@@ -108,3 +106,5 @@ CartItem.propTypes = {
     image: PropTypes.string,
     quantity: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
+
+export default extractProductConsumer(['removeItemFromCart', 'incrementQuantity', 'decrementQuantity'])(CartItem);

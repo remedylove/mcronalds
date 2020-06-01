@@ -4,7 +4,6 @@ import CurrencyFormat from 'react-currency-format';
 import PropTypes from 'prop-types';
 import extractProductConsumer from '../ExtractProductConsumer/ExtractProductConsumer';
 
-
 const useStyles = makeStyles({
     container: {
         width: '80%'
@@ -55,4 +54,3 @@ ProductPresentation.propTypes = {
     calories: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 export default extractProductConsumer(['detailProduct'])(ProductPresentation);
-
