@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Grid, Typography, makeStyles } from '@material-ui/core';
 import CurrencyFormat from 'react-currency-format';
+import PropTypes from 'prop-types';
 import extractProductConsumer from '../ExtractProductConsumer/ExtractProductConsumer';
 
 const useStyles = makeStyles({
@@ -47,5 +48,9 @@ const ProductPresentation = ({ detailProduct }) => {
         </Container>
     );
 }
-
+ProductPresentation.propTypes = {
+    title: PropTypes.string,
+    description: PropTypes.string,
+    calories: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+}
 export default extractProductConsumer(['detailProduct'])(ProductPresentation);

@@ -4,6 +4,7 @@ import { Typography, Button, withStyles } from '@material-ui/core';
 import CustomizeIngredient from '../CustomizeIngredient/CustomizeIngredient';
 import extractProductConsumer from '../ExtractProductConsumer/ExtractProductConsumer';
 import { v4 as uuid } from 'uuid';
+import PropTypes from 'prop-types';
 
 const styles = {
   buttonWrapper: {
@@ -83,6 +84,11 @@ class ItemModal extends Component {
       </Modal>
     );
   }
+}
+
+ItemModal.propTypes = {
+  title: PropTypes.string,
+  ingredient: PropTypes.string,
 }
 
 export default extractProductConsumer(['addProductToCart'])(withStyles(styles)(ItemModal));

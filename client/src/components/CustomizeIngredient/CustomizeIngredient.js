@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Typography, Button, withStyles } from '@material-ui/core';
+import extractProductConsumer from '../ExtractProductConsumer/ExtractProductConsumer';
+import PropTypes from 'prop-types';
 
 const styles = theme =>  ({
     outerContainer: {
@@ -86,4 +88,9 @@ class CustomizeIngredient extends Component {
     }
 }
 
+CustomizeIngredient.propTypes = {
+    counter: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    ingredient: PropTypes.string,
+}
 export default withStyles(styles)(CustomizeIngredient);
+

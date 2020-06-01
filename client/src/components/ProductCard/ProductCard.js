@@ -11,6 +11,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { Link } from 'react-router-dom';
 import ItemModal from '../ItemModal/ItemModal';
 import extractProductConsumer from '../../components/ExtractProductConsumer/ExtractProductConsumer';
+import PropTypes from 'prop-types';
 
 const styles = theme => ({
   CardHeader: {
@@ -116,3 +117,9 @@ class ProductCard extends Component {
 }
 
 export default extractProductConsumer(['handleDetail', 'addItemToCart'])(withStyles(styles)(ProductCard));
+
+ProductCard.propTypes = {
+  _id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  title: PropTypes.string,
+  image: PropTypes.string,
+}

@@ -4,6 +4,7 @@ import Badge from '@material-ui/core/Badge';
 import IconButton from '@material-ui/core/IconButton';
 import extractProductConsumer from '../ExtractProductConsumer/ExtractProductConsumer';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class Cart extends Component {
 
@@ -25,6 +26,10 @@ class Cart extends Component {
             </div>
         )
     }
+}
+
+Cart.propTypes = {
+    amount: PropTypes.oneOf([PropTypes.number, PropTypes.string]),
 }
 
 export default extractProductConsumer(['cartItems'])(Cart);

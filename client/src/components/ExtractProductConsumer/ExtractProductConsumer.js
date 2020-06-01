@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ProductConsumer } from '../../context';
 import Loader from '../../components/Loader/Loader';
+import PropTypes from 'prop-types';
 
 const extractProductConsumer = neededProps => WrappedComponent =>
 
@@ -29,5 +30,9 @@ const extractProductConsumer = neededProps => WrappedComponent =>
           )
       }
   }
+
+extractProductConsumer.propTypes = {
+  isReady: PropTypes.bool,
+}
 
 export default extractProductConsumer;

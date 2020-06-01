@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ProductPresentation from '../ProductPresentation/ProductPresentation';
 import IngredientsList from '../IngredientsList/IngredientsList';
+import PropTypes from 'prop-types';
 
 class SingleProductView extends Component {
     constructor(props)   {
@@ -22,3 +23,9 @@ class SingleProductView extends Component {
 }
 
 export default SingleProductView;
+
+SingleProductView.propTypes = {
+    title: PropTypes.string,
+    detailProduct: PropTypes.object,
+    ingredients: PropTypes.string,
+};

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, makeStyles } from '@material-ui/core';
 import ProductCard from '../ProductCard/ProductCard';
-
+import PropTypes from 'prop-types';
 const styles = {
     Container : {
         display: 'flex',
@@ -34,6 +34,11 @@ const ProductsList = ({ products, currentCategory }) => {
             </Grid>
         </div>
     );
+}
+
+ProductsList.propTypes = {
+    key: PropTypes.string,
+    product: PropTypes.string,
 }
 
 export default ProductsList;
