@@ -2,6 +2,8 @@ import React from 'react';
 import { Container, Grid, Typography, makeStyles } from '@material-ui/core';
 import CurrencyFormat from 'react-currency-format';
 import PropTypes from 'prop-types';
+import extractProductConsumer from '../ExtractProductConsumer/ExtractProductConsumer';
+
 
 const useStyles = makeStyles({
     container: {
@@ -22,10 +24,12 @@ const useStyles = makeStyles({
     }
 });
 
-const ProductPresentation = ({ title, detailProduct }) => {
+const ProductPresentation = ({ detailProduct }) => {
 
-    const { calories, description } = detailProduct;
+    const { title, calories, description, detailsImageSrc } = detailProduct;
     const classes = useStyles();
+
+    console.log(detailProduct);
 
     return (
         <Container className={classes.container}>
@@ -39,17 +43,16 @@ const ProductPresentation = ({ title, detailProduct }) => {
                     <Typography align="left">{description}</Typography>
                 </Grid>
                 <Grid item md={7}align="left">
-                    <img className={classes.productImage} src={require(`../../assets/${title}-details.jpg`)} alt="details-product-img" />
+                    <img className={classes.productImage} src={process.env.PUBLIC_URL + detailsImageSrc} />
                 </Grid>
             </Grid>
         </Container>
-    )
+    );
 }
-
-export default ProductPresentation;
-
 ProductPresentation.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
     calories: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
+export default extractProductConsumer(['detailProduct'])(ProductPresentation);
+

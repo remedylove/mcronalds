@@ -1,10 +1,14 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const Product = require('../models/Product');
+const Joi = require('@hapi/joi');
 
-const OrderedProductSchema = new Schema({
-    product: Product.schema,
-    amount: Number
+const OrderedProductSchema = Joi.object().keys({
+    _id: Joi.string().required(),
+    title: Joi.string().required(),
+    customization: Joi.object().keys({
+        added: Joi.array().items(Joi.string()),
+        removed: Joi.array().items(Joi.string())
+    }),
+    price: Joi.number().required(),
+    quantity: Joi.number().required()
 });
 
-module.exports = OrderedProduct = mongoose.model('orderedProduct', OrderedProductSchema);
+module.exports = OrderedProductSchema;

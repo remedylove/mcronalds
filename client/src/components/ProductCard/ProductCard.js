@@ -68,7 +68,7 @@ class ProductCard extends Component {
 
   render()  {
     const { classes, product, handleDetail, addItemToCart } = this.props;
-    const { _id, title } = product;
+    const { _id, title, imageSrc, price } = product;
 
     return (
       <React.Fragment>
@@ -82,7 +82,7 @@ class ProductCard extends Component {
             }
             align="left"
             title={<Link className={classes.Link} to={`/product-details/${title.toLowerCase()}`}><Typography className={classes.Typography} variant="h6">{title}</Typography></Link>}
-            subheader={<CurrencyFormat value={4.99} displayType={'text'} prefix={'$'}/>}
+            subheader={<CurrencyFormat value={price} displayType={'text'} prefix={'$'}/>}
           />
           <div 
             className={classes.mediaWrapper}
@@ -93,7 +93,7 @@ class ProductCard extends Component {
             <Link to={`/product-details/${title}`}>
               <CardMedia
                 className={classes.media}
-                image={require(`../../assets/${title}.jpg`)}                  
+                image={process.env.PUBLIC_URL + imageSrc} 
                 title={title}
               />
             </Link>

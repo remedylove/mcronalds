@@ -31,7 +31,7 @@ const useStyles = makeStyles({
     }
 });
 
-const CartCosts = ({ cartItems }) => {
+const CartCosts = ({ addOrder, cartItems }) => {
     let total = 0;
     cartItems.map(cartItem => {
         const { quantity, price } = cartItem;
@@ -50,7 +50,13 @@ const CartCosts = ({ cartItems }) => {
                 <Typography className={classes.totalText} variant="h5" align="left">Total: </Typography>
                 <Typography className={classes.totalText} variant="h5" align="right">${(total).toFixed(2)}</Typography>
             </div>
-            <Button className={classes.button} variant="contained" color="primary" >ORDER AND PAY</Button>
+            <Button 
+                className={classes.button} 
+                variant="contained" 
+                color="primary" 
+                onClick={e => addOrder(cartItems)}
+            >ORDER AND PAY
+            </Button>
         </Paper>
     )
 }

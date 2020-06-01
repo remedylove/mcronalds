@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Typography, Button } from '@material-ui/core';
 import { Grid, withStyles } from '@material-ui/core';
 import extractProductConsumer from '../ExtractProductConsumer/ExtractProductConsumer';
+import { Grid, Typography, Button, withStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
 const styles = theme =>  ({
@@ -40,47 +41,31 @@ class CustomizeIngredient extends Component {
         super(props);
         this.state = {
             counter: 1,
-            allowIncrement: true,
-            allowDecrement: true,
-            // product: {...this.props.product}
         }
     }
 
     increment = ingredient =>   {
         const { counter } = this.state;
-        if(counter + 1 === 2) {
-            this.props.addIngredient(ingredient);
+        if(counter + 1 <= 2) {
+            if(this.props.removeIngredient(ingredient, 'removed')) {
+                this.props.addIngredient(ingredient, 'added');
+            }
+            this.setState(prevState => ({
+                counter: prevState.counter + 1,
+            }));
         }
-
-        counter <= 1
-        ?
-            this.setState(prevState => ({
-                    ...prevState,
-                    counter: prevState.counter + 1,
-                    // allowIncrement: false
-                }
-            ))
-        :
-            this.setState(prevState => ({
-                ...prevState
-            }))
     }
 
     decrement = ingredient =>   {
         const { counter } = this.state;
-        this.props.removeIngredient(ingredient);
-        counter >= 1
-        ?
+        if(counter - 1 >= 0) {
+            if(this.props.removeIngredient(ingredient, 'added')) {
+                this.props.addIngredient(ingredient, 'removed');
+            }
             this.setState(prevState => ({
-                    ...prevState,
-                    counter: prevState.counter - 1,
-                    // allowDecrement: false
-                }
-            ))
-        :
-            this.setState(prevState => ({
-                ...prevState
-            }))
+                counter: prevState.counter - 1,
+            }));
+        }
     }
 
     render()    {
@@ -105,9 +90,9 @@ class CustomizeIngredient extends Component {
     }
 }
 
-export default extractProductConsumer([''])(withStyles(styles)(CustomizeIngredient));
-
 CustomizeIngredient.propTypes = {
     counter: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     ingredient: PropTypes.string,
 }
+export default withStyles(styles)(CustomizeIngredient);
+

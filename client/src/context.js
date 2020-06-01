@@ -23,7 +23,11 @@ class ProductProvider extends Component {
     
     getItemToDetails = title => {
         const product = this.state.products.find(item => item.title.toLowerCase() === title.toLowerCase());
-        return product ? product : <Redirect to="/404" />;
+                
+        return product;
+        // if(!product) {
+        //     return <Redirect to="/404" />
+        // }
     }
 
     getItem = id => {
@@ -39,12 +43,14 @@ class ProductProvider extends Component {
     handleDetail = title =>    {
         console.log(this.state.products);
         const detailProduct = this.getItemToDetails(title);
-        const categoryProducts = this.getCategoryProducts(detailProduct);
+        console.log(detailProduct);
+        const categoryProducts = detailProduct ? this.getCategoryProducts(detailProduct) : undefined;
+
         this.setState({
             ...this.state,
             detailProduct,
             categoryProducts
-        }, console.log(this.state))
+        });
     }
 
     incrementQuantity = id => {
@@ -72,9 +78,16 @@ class ProductProvider extends Component {
     addItemToCart = id => {
         console.log(id);
         const product = this.getItem(id);
+        const { _id, title, customization, price, quantity } = product;
+        const orderProduct = {
+            _id,
+            title,
+            customization,
+            price,
+            quantity
+        };
         const { cartItems } = this.state;
         const isInCartYet = cartItems.find(item => item._id === id);
-        console.log(isInCartYet);
         if(isInCartYet) {
             isInCartYet.quantity += 1;
             localStorage.setItem('cartItems', JSON.stringify(cartItems));
@@ -82,8 +95,8 @@ class ProductProvider extends Component {
                 cartItems: this.getCartItems()
             });
         } else {
-            product.quantity = 1;
-            cartItems.push(product);
+            orderProduct.quantity = 1;
+            cartItems.push(orderProduct);
             localStorage.setItem('cartItems', JSON.stringify(cartItems));
             this.setState({
                 cartItems: this.getCartItems()
@@ -93,8 +106,16 @@ class ProductProvider extends Component {
     
     addProductToCart = product => {
         const { cartItems } = this.state;
-        product.quantity = 1;
-        cartItems.push(product);
+        const { _id, title, customization, price, quantity } = product;
+        const orderProduct = {
+            _id,
+            title,
+            customization,
+            price,
+            quantity
+        };
+        orderProduct.quantity = 1;
+        cartItems.push(orderProduct);
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
         this.setState({
             cartItems: this.getCartItems()

@@ -38,14 +38,19 @@ class ItemModal extends Component {
     }
   }
 
-  addIngredient = ingredient => {
+  addIngredient = (ingredient, array) => {
     const { product } = this.state;
-    product['customization']['added'].push(ingredient);
+    product['customization'][array].push(ingredient);
   }
 
-  removeIngredient = ingredient =>  {
+  removeIngredient = (ingredient, array) =>  {
     const { product } = this.state;
-    product['customization']['removed'].push(ingredient);
+    const index = product['customization'][array].indexOf(ingredient);
+    if(index > -1)  {
+      product['customization'][array].splice(index, 1);
+      return false;
+    }
+    return true;
   }
 
   render()  {
