@@ -25,9 +25,6 @@ class ProductProvider extends Component {
         const product = this.state.products.find(item => item.title.toLowerCase() === title.toLowerCase());
                 
         return product;
-        // if(!product) {
-        //     return <Redirect to="/404" />
-        // }
     }
 
     getItem = id => {
@@ -136,6 +133,7 @@ class ProductProvider extends Component {
      
         return cartItems;
     }
+    
 
     render() {
         const { isReady } = this.state;

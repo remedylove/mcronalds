@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import StaffNavbar from '../../components/StaffNavbar/StaffNavbar';
 import OrdersList from '../../components/OrdersList/OrdersList';
+import OrderAlert from '../../components/OrderAlert/OrderAlert';
 
 class HandleOrders extends Component {
     constructor(props)  {
         super(props);
         this.state = {
             orders: {},
-            isReady: false
+            isReady: false,
+            alertOpen: false,
+            color: '',
+            alertMsg: ''
         }
     }
 
@@ -20,7 +24,7 @@ class HandleOrders extends Component {
         setInterval(() => {
             axios.get('/api/orders')
             .then(res => this.setState({orders: res.data, isReady: true}))
-        }, 5000);
+        }, 1000);
     }
 
     handleOrder = id => {
@@ -30,24 +34,31 @@ class HandleOrders extends Component {
         }
 
         axios.put(`/api/orders/${id}`, isHandled)
-        .then(console.log)
+        .then(this.setState({alertOpen: true, alertMsg: 'The order has been handled.', color: 'success'}))
         .catch(console.log)
     }
 
     cancelOrder = id => {
 
         axios.delete(`/api/orders/${id}`)
-        .then(console.log)
+        .then(this.setState({alertOpen: true, alertMsg: 'The order has been deleted.', color: 'danger'}))
         .catch(console.log)
 
     }
 
+    onDismiss = () => {
+        this.setState({
+            alertOpen: false
+        });
+    }
+
     render() {
-        const { orders, isReady } = this.state;
+        const { orders, isReady, alertOpen, alertMsg, color } = this.state;
         
         return (
             <>
                 <StaffNavbar />
+                <OrderAlert isOpen={alertOpen} color={color} toggle={this.onDismiss} alertMsg={alertMsg}/>
                 <OrdersList orders={orders} isReady={isReady} handleOrder={this.handleOrder} cancelOrder={this.cancelOrder} />
             </>
         )

@@ -30,7 +30,9 @@ const useStyles = makeStyles({
     actionsContainer: {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: '1em'
     },
     actionsHeaderText: {
         fontSize: '.75rem', 
@@ -72,7 +74,7 @@ const Order = ({ index, order, handleOrder, cancelOrder }) => {
 
     return (
         <div>
-            <Paper square className={classes.paperOrder}>
+            <Paper className={classes.paperOrder}>
                 <Typography align="left" className={classes.orderNumber}>Order #{index}</Typography>
                 <Grid className={classes.tableGridContainer} container>
                     <Grid item md={3}>
@@ -85,14 +87,12 @@ const Order = ({ index, order, handleOrder, cancelOrder }) => {
                         <Typography className={classes.tableGridItem}>Quantity</Typography>
                     </Grid>
                 </Grid>
-                {products.map(product => {
-                    const { _id, title, customization, quantity } = product;
+                {products.map(({ _id, title, customization, quantity }) => {
                     const { removed, added } = customization;
                     return (
                         <OrderedProduct key={_id} title={title} removed={removed} added={added} quantity={quantity} />
                     );
                 })}
-                <div className={classes. actionsWrapper}>
                     <div className={classes.actionsContainer}>
                         <Typography className={classes.actionsHeaderText} variant="body2">ACTIONS</Typography>
                         <div className={classes.iconsWrapper}>
@@ -104,7 +104,6 @@ const Order = ({ index, order, handleOrder, cancelOrder }) => {
                             </IconButton>
                         </div>
                     </div>
-                </div>
             </Paper>
         </div>
     );
