@@ -7,7 +7,7 @@ const useStyles = makeStyles({
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center', 
-      height: '100vh', 
+      height: '80vh', 
       width: '100%', 
     }
 });

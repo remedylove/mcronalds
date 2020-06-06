@@ -11,7 +11,6 @@ Order = mongoose.model("Order", mongooseOrderSchema);
 
 router.get('/', (req, res) => {
     Order.find()
-        .sort({   })
         .then(orders => res.json(orders));
 });
 

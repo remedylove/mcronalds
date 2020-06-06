@@ -3,6 +3,7 @@ import axios from 'axios';
 import StaffNavbar from '../../components/StaffNavbar/StaffNavbar';
 import OrdersList from '../../components/OrdersList/OrdersList';
 import OrderAlert from '../../components/OrderAlert/OrderAlert';
+import { Typography } from '@material-ui/core';
 
 class HandleOrders extends Component {
     constructor(props)  {
@@ -23,7 +24,14 @@ class HandleOrders extends Component {
     getProducts = () => {
         setInterval(() => {
             axios.get('/api/orders')
-            .then(res => this.setState({orders: res.data, isReady: true}))
+            .then(res => res.data.reduce(function(filtered, order, index)    {
+                if(!order.handled)  {
+                    const filteredOrder = { ...order, index }
+                    filtered.push(filteredOrder);
+                }
+                return filtered;
+            }, []))
+            .then(res => this.setState({orders: res, isReady: true}))
         }, 1000);
     }
 
