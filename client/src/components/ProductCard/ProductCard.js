@@ -26,7 +26,8 @@ const styles = theme => ({
     },
   },
   Typography: {
-    cursor: 'pointer'
+    cursor: 'pointer',
+    fontFamily: 'Permanent Marker'
   },
   Link: {
     // // textDecoration: 'none',
@@ -47,8 +48,12 @@ const styles = theme => ({
     cursor: 'pointer'
   },
   add: {
-    color: '#0275d8',
+    color: '#3f50b5',
   },
+  button: {
+    fontFamily: 'Permanent Marker',
+    background: '#3f50b5'
+  }
 });
 
 
@@ -98,9 +103,10 @@ class ProductCard extends Component {
               />
             </Link>
           </div>
-          <CardContent>
+          <CardContent style={{paddingBottom: '16px'}}>
             <Button 
-              variant="outlined" 
+              className={classes.button}
+              variant="contained" 
               color="primary" 
               align="left"
               onClick={this.toggle}  
