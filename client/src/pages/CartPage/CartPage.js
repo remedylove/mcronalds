@@ -6,11 +6,17 @@ import { Typography, Button, withStyles } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import CartItemsList from '../../components/CartItemsList/CartItemsList';
 import CartCosts from '../../components/CartCosts/CartCosts';
+import CartModal from '../../components/CartModal/CartModal';
 
 const styles = {
     button: {
         fontFamily: 'Permanent Marker',
         color: '#fff',
+    },
+    cartStateText: {
+        fontFamily: 'Permanent Marker',
+        fontWeight: 'bold',
+        margin: '.25em auto'
     }
 }
 
@@ -18,7 +24,8 @@ class CartPage extends Component {
     constructor(props)  {
         super(props);
         this.state = {
-            cartItems: this.props.cartItems
+            cartItems: this.props.cartItems,
+            modal: false
         }
     }
 
@@ -33,19 +40,26 @@ class CartPage extends Component {
         .catch(console.log)
     }
 
+    toggle = () =>  {
+        this.setState(prevState =>  ({
+            modal: !prevState.modal
+        }));
+    }
+
     render() {
-        const { cartItems } = this.props;
-        const { classes } = this.props;
+        const { modal } = this.state;
+        const { classes, cartItems } = this.props;
         return (
             <div>
                 <Logo />
+                <CartModal modal={modal} toggle={this.toggle} />
                 {Boolean(cartItems.length) 
                     ? <>
-                        <Typography style={{margin: '.25em auto', fontWeight: 'bold', fontFamily: 'Permanent Marker'}} variant="h2">Your cart</Typography>
-                        <CartItemsList addOrder={this.addOrder} />
+                        <Typography className={classes.cartStateText} variant="h2">Your cart</Typography>
+                        <CartItemsList addOrder={this.addOrder} toggle={this.toggle} />
                       </>
                     : <>
-                        <Typography style={{margin: '.25em auto', fontWeight: 'bold', fontFamily: 'Permanent Marker'}} variant="h2">Your cart is empty</Typography>
+                        <Typography className={classes.cartStateText} variant="h2">Your cart is empty</Typography>
                         <Link className="link" to="/create-order">
                             <Button 
                                 className={classes.button} 

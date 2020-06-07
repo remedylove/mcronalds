@@ -134,6 +134,12 @@ class ProductProvider extends Component {
         return cartItems;
     }
     
+    clearCartItems = () => {
+        localStorage.clear();
+        this.setState({
+            cartItems: this.getCartItems()
+        });
+    }
 
     render() {
         const { isReady } = this.state;
@@ -146,7 +152,8 @@ class ProductProvider extends Component {
                 addProductToCart: this.addProductToCart,
                 incrementQuantity: this.incrementQuantity,
                 decrementQuantity: this.decrementQuantity,
-                getItemToDetails: this.getItemToDetails
+                getItemToDetails: this.getItemToDetails,
+                clearCartItems: this.clearCartItems
             }}>
                 {this.props.children}
             </ProductContext.Provider>
