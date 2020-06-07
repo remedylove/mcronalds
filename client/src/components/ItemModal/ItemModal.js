@@ -3,7 +3,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Typography, Button, withStyles } from '@material-ui/core';
 import CustomizeIngredient from '../CustomizeIngredient/CustomizeIngredient';
 import extractProductConsumer from '../ExtractProductConsumer/ExtractProductConsumer';
-import { v4 as uuid } from 'uuid';
+import { ObjectId } from '../../objectIdGenerator';
 import PropTypes from 'prop-types';
 
 const styles = {
@@ -14,19 +14,16 @@ const styles = {
     width: '100%'
   },
   Button: {
-    background: '#428bca',
-    color: '#fff',
-    '&:hover':  {
-      background: '#317ab9'
-    },
-  },
-  ModalHeader: {
-    background: '#707070',
+    fontFamily: 'Permanent Marker',
     color: '#fff'
   },
+  ModalHeader: {
+    alignItems: 'center'
+  },
   Header: {
-    color: '#fff',
-    fontWeight: 300
+    fontWeight: 300,
+    fontFamily: 'Permanent Marker',
+    fontSize: '1.25rem'
   }
 }
 
@@ -53,10 +50,25 @@ class ItemModal extends Component {
     return true;
   }
 
+  generateProductId = () => {
+    const { product } = this.state;
+    product._id = ObjectId();
+  }
+
+  addCustomizedProduct = () => {
+    const { product } = this.state;
+    const { addProductToCart, toggle } = this.props;
+
+    if(!!product.customization.removed.length || !!product.customization.added.length)  {
+      this.generateProductId();
+    }
+    addProductToCart(product); 
+    toggle();
+  }
+
   render()  {
     const { classes, modal, toggle, addProductToCart } = this.props;
     const { product } = this.state;
-    product._id = uuid();
     const { title, ingredients } = product;
 
     return (
@@ -72,13 +84,13 @@ class ItemModal extends Component {
           </div>
         </ModalHeader>
         <ModalBody>
-          {ingredients.map(ingredient =>  (
-            <CustomizeIngredient key={ingredient} ingredient={ingredient} addIngredient={this.addIngredient} removeIngredient={this.removeIngredient} />
+          {ingredients.map((ingredient, index) =>  (
+            index != 0 && <CustomizeIngredient key={ingredient} ingredient={ingredient} addIngredient={this.addIngredient} removeIngredient={this.removeIngredient} />
           ))}
         </ModalBody>
         <ModalFooter>
           <div className={classes.buttonWrapper}>
-            <Button className={classes.Button} variant="contained" onClick={e => {addProductToCart(product); toggle();}}>Accept and add to cart</Button>
+            <Button className={classes.Button} variant="contained" color="primary" onClick={e => this.addCustomizedProduct()}>Accept and add to cart</Button>
           </div>
         </ModalFooter>
       </Modal>

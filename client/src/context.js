@@ -104,19 +104,28 @@ class ProductProvider extends Component {
     addProductToCart = product => {
         const { cartItems } = this.state;
         const { _id, title, customization, price, quantity } = product;
-        const orderProduct = {
-            _id,
-            title,
-            customization,
-            price,
-            quantity
-        };
-        orderProduct.quantity = 1;
-        cartItems.push(orderProduct);
-        localStorage.setItem('cartItems', JSON.stringify(cartItems));
-        this.setState({
-            cartItems: this.getCartItems()
-        })
+        const isInCartYet = cartItems.find(item => item._id === _id);
+        if(isInCartYet) {
+            isInCartYet.quantity += 1;
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            this.setState({
+                cartItems: this.getCartItems()
+            });
+        } else {
+            const orderProduct = {
+                _id,
+                title,
+                customization,
+                price,
+                quantity
+            };
+            orderProduct.quantity = 1;
+            cartItems.push(orderProduct);
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            this.setState({
+                cartItems: this.getCartItems()
+            })
+        }
     }
 
     removeItemFromCart = id => {

@@ -30,6 +30,8 @@ const styles = theme =>  ({
         alignItems: 'center'
     },
     ingredient: {
+        fontFamily: 'Permanent Marker',
+        color: '#444',
         textTransform: 'capitalize'
     }
 })
