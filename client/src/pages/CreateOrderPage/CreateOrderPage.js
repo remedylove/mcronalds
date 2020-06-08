@@ -11,9 +11,8 @@ const styles = theme => ({
     Typography: {
         background: '#fff',
         fontFamily: 'Permanent Marker',
-        textTransform: 'uppercase',
-        paddingTop: 20,
-        paddingBottom: 20,
+        fontWeight: 'bold',
+        padding: '.75em 0',
         borderBottom: '1px solid #999',
         marginTop: '1px',
         marginBottom: '.75em'

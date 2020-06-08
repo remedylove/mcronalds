@@ -87,7 +87,7 @@ class ProductCard extends Component {
             }
             align="left"
             title={<Link className={classes.Link} to={`/product-details/${title.toLowerCase()}`}><Typography className={classes.Typography} variant="h6">{title}</Typography></Link>}
-            subheader={<CurrencyFormat value={price} displayType={'text'} prefix={'$'}/>}
+            subheader={<CurrencyFormat style={{fontFamily: 'Permanent Marker', fontSize: '1.25rem'}} value={price} displayType={'text'} prefix={'$'}/>}
           />
           <div 
             className={classes.mediaWrapper}

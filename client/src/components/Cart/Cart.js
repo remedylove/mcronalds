@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Badge from '@material-ui/core/Badge';
 import IconButton from '@material-ui/core/IconButton';
+import { Typography } from '@material-ui/core';
 import extractProductConsumer from '../ExtractProductConsumer/ExtractProductConsumer';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -17,9 +18,9 @@ class Cart extends Component {
         return (
             <div>
                 <Link to='/cart'>
-                    <IconButton aria-label="show 4 new mails" color="inherit">
-                        <Badge badgeContent={amount} color="primary">
-                            <ShoppingCartIcon fontSize="large" style={{color: 'gray'}}/>
+                    <IconButton color="inherit">
+                        <Badge badgeContent={<Typography style={{fontFamily: 'Permanent Marker'}}>{amount}</Typography>} color="primary">
+                            <ShoppingCartIcon fontSize="large" style={{color: '#707070'}}/>
                         </Badge>
                     </IconButton>
                 </Link>

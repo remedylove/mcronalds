@@ -12,10 +12,13 @@ const useStyles = makeStyles({
         padding: '7.5em 0'
     },
     productName: {
+        fontFamily: 'Permanent Marker',
         fontWeight: 'bold', 
         textTransform: 'capitalize'
     },
     caloriesText: {
+        fontFamily: 'Permanent Marker',
+        color: '#3f50b5',
         margin: '1em 0'
     },
     productImage: {
@@ -34,12 +37,12 @@ const ProductPresentation = ({ detailProduct }) => {
         <Container className={classes.container}>
             <Grid container className={classes.gridContainer}>
                 <Grid item md={5}>
-                    <Typography variant="h3" align="left" className={classes.productName}>{title}</Typography>
+                    <Typography variant="h2" align="left" className={classes.productName}>{title}</Typography>
                     <Typography variant="h4" align="left" className={classes.caloriesText}>
                         <CurrencyFormat value={calories} displayType={'text'} sufix={'kcal'}></CurrencyFormat>
                         kcal
                     </Typography>
-                    <Typography align="left">{description}</Typography>
+                    <Typography style={{fontFamily: 'Permanent Marker'}} align="left">{description}</Typography>
                 </Grid>
                 <Grid item md={7}align="left">
                     <img className={classes.productImage} src={process.env.PUBLIC_URL + detailsImageSrc} />

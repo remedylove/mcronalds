@@ -4,6 +4,7 @@ import RelatedProductCard from '../RelatedProductCard/RelatedProductCard';
 import PropTypes from 'prop-types';
 const styles = {
     Typography: {
+        fontFamily: 'Permanent Marker',
         fontWeight: 'bold'
     },
     Grid: {
