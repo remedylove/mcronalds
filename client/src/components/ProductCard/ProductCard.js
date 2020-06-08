@@ -72,7 +72,7 @@ class ProductCard extends Component {
 }
 
   render()  {
-    const { classes, product, handleDetail, addItemToCart } = this.props;
+    const { classes, product, handleDetail, addItemToCart, onAddition } = this.props;
     const { _id, title, imageSrc, price } = product;
 
     return (
@@ -81,7 +81,7 @@ class ProductCard extends Component {
           <CardHeader
             className={classes.CardHeader}
             action={
-              <IconButton aria-label="settings" onClick={e => addItemToCart(_id)}>
+              <IconButton aria-label="settings" onClick={e => {addItemToCart(_id); onAddition('Product');}}>
                 <AddCircleIcon className={classes.add} fontSize="large"/>
               </IconButton>
             }
@@ -115,7 +115,7 @@ class ProductCard extends Component {
             </Button>
           </CardContent>
         </Card>
-        {this.state.modal && <ItemModal product={product} modal={this.state.modal} toggle={this.toggle} />}
+        {this.state.modal && <ItemModal product={product} modal={this.state.modal} toggle={this.toggle} onAddition={onAddition} />}
       </React.Fragment>
     );
   }

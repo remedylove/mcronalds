@@ -57,12 +57,13 @@ class ItemModal extends Component {
 
   addCustomizedProduct = () => {
     const { product } = this.state;
-    const { addProductToCart, toggle } = this.props;
+    const { addProductToCart, toggle, onAddition } = this.props;
 
     if(!!product.customization.removed.length || !!product.customization.added.length)  {
       this.generateProductId();
     }
-    addProductToCart(product); 
+    addProductToCart(product);
+    onAddition('Customized product');
     toggle();
   }
 

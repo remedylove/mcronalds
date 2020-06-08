@@ -4,13 +4,13 @@ import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({
     alert: {
-        width: '50%', 
+        // width: '100%',
+        margin: '0 .25em',
         fontWeight: 'bold',
-        margin: '0 auto'
     }
 })
 
-const OrderAlert = ({ isOpen, color, toggle, alertMsg }) => {
+const MyAlert = ({ isOpen, color, toggle, alertMsg }) => {
 
     const classes = useStyles();
 
@@ -19,4 +19,4 @@ const OrderAlert = ({ isOpen, color, toggle, alertMsg }) => {
     )
 }
 
-export default OrderAlert;
+export default MyAlert;

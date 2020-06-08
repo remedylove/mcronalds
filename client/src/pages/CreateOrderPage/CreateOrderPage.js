@@ -4,6 +4,7 @@ import ProductsList from '../../components/ProductsList/ProductsList';
 import ChoiceBar from '../../components/ChoiceBar/ChoiceBar';
 import { categories } from '../../store';
 import Logo from '../../components/Logo/Logo';
+import MyAlert from '../../components/MyAlert/MyAlert';
 import extractProductConsumer from '../../components/ExtractProductConsumer/ExtractProductConsumer';
 
 const styles = theme => ({
@@ -12,7 +13,8 @@ const styles = theme => ({
         textTransform: 'uppercase',
         paddingTop: 20,
         paddingBottom: 20,
-        borderBottom: '1px solid #999'
+        borderBottom: '1px solid #999',
+        marginBottom: '.75em'
     }
 })
 
@@ -21,6 +23,9 @@ class CreateOrderPage extends Component  {
         super(props);
         this.state = {
             currentCategory: '',
+            alertMsg: '',
+            alertOpen: false,
+            color: ''
         }
     }
 
@@ -30,13 +35,22 @@ class CreateOrderPage extends Component  {
         })
     }
 
+    onAddition = productName => {
+        this.setState({alertOpen: true, alertMsg: `${productName} has been added to your cart.`, color: 'primary'});
+    }
+
+    onDismiss = () => {
+        this.setState({
+            alertOpen: false
+        });
+    }
+
     render()    {
-        const { currentCategory, cartCounter } = this.state;
-        const { classes, products, handleDetail, isReady } = this.props;
+        const { currentCategory, cartCounter, alertOpen, alertMsg, color } = this.state;
+        const { classes, products } = this.props;
         
         return(
-            isReady
-            ? <div>
+            <div>
                 <Logo cartCounter={cartCounter}/>
                 <ChoiceBar 
                     categories={categories}
@@ -46,14 +60,12 @@ class CreateOrderPage extends Component  {
                 <Typography className={classes.Typography} variant="h4">
                         {currentCategory ? currentCategory : 'all products'}
                 </Typography>
-                <ProductsList products={products} currentCategory={currentCategory} handleDetail={handleDetail} />
+                <MyAlert isOpen={alertOpen} color={color} toggle={this.onDismiss} alertMsg={alertMsg}/>
+                <ProductsList products={products} currentCategory={currentCategory} onAddition={this.onAddition} />
             </div>
-            : <>
-                <CircularProgress style={{margin: 'auto'}} color="primary" />
-                <Typography>Fetching data...</Typography>
-              </>
+
         );
     }
 }
 
-export default extractProductConsumer(['handleDetail', 'products', 'cartItems', 'isReady'])(withStyles(styles)(CreateOrderPage));
+export default extractProductConsumer(['products', 'cartItems'])(withStyles(styles)(CreateOrderPage));

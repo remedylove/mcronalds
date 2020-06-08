@@ -11,14 +11,14 @@ const styles = {
     },
     GridContainer:  {
         marginLeft: 0,
-        marginTop: '25px',
+        marginTop: '.75em',
         maxWidth: '100%'
     }
 }
 
 const useStyles = makeStyles(styles);
 
-const ProductsList = ({ products, currentCategory }) => {
+const ProductsList = ({ products, currentCategory, onAddition }) => {
     const classes = useStyles();
 
     return (
@@ -27,7 +27,7 @@ const ProductsList = ({ products, currentCategory }) => {
                 {products.map(product => (
                     !currentCategory || product.category === currentCategory
                     ?   <Grid key={product.id} item xs={10} sm={5} md={3}>
-                            <ProductCard key={product.id} product={product} />
+                            <ProductCard key={product.id} product={product} onAddition={onAddition} />
                         </ Grid>
                     : null
                 ))}

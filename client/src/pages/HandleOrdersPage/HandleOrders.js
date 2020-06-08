@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import StaffNavbar from '../../components/StaffNavbar/StaffNavbar';
 import OrdersList from '../../components/OrdersList/OrdersList';
-import OrderAlert from '../../components/OrderAlert/OrderAlert';
-import { Typography } from '@material-ui/core';
+import MyAlert from '../../components/MyAlert/MyAlert';
 
 class HandleOrders extends Component {
     constructor(props)  {
@@ -66,7 +65,7 @@ class HandleOrders extends Component {
         return (
             <>
                 <StaffNavbar />
-                <OrderAlert isOpen={alertOpen} color={color} toggle={this.onDismiss} alertMsg={alertMsg}/>
+                <MyAlert isOpen={alertOpen} color={color} toggle={this.onDismiss} alertMsg={alertMsg}/>
                 <OrdersList orders={orders} isReady={isReady} handleOrder={this.handleOrder} cancelOrder={this.cancelOrder} />
             </>
         )

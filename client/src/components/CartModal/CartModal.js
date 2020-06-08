@@ -68,9 +68,4 @@ class CartModal extends Component {
   }
 }
 
-CartModal.propTypes = {
-  title: PropTypes.string,
-  ingredient: PropTypes.string,
-}
-
 export default withStyles(styles)(CartModal);
