@@ -11,7 +11,9 @@ const useStyles = makeStyles({
         padding: '.25em 2.5em'
     },
     productGridItem: {
-        fontSize: '.75rem'
+        fontFamily: 'Permanent Marker',
+        // fontSize: '.75rem',
+        color: '#777'
     },
     productName:    {
         textTransform: 'capitalize',

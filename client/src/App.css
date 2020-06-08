@@ -12,6 +12,11 @@ body  {
   margin: 0;
 }
 
+.App {
+  background: #f2f2f2;
+  min-height: 100vh;
+}
+
 .bannerContainer  {
   background: lightgray;
 }

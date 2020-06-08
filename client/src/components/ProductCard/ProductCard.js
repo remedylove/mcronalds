@@ -19,7 +19,7 @@ const styles = theme => ({
   },
   card: {
     border: '1px solid #ddd',
-    background: 'transparent',
+    background: '#fff',
     transition: '.2s',
     '&:hover':  {
       transform: 'scale(1.05)'
