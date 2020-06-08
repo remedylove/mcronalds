@@ -46,6 +46,5 @@ export default IngredientsList;
 
 IngredientsList.propTypes = {
     title: PropTypes.string,
-    ingredient: PropTypes.string,
-    ingridients: PropTypes.array
+    ingredients: PropTypes.array
 }
