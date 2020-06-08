@@ -14,7 +14,7 @@ const useStyles = makeStyles({
     gridItem: {
         display: 'flex', 
         justifyContent: 'center', 
-        alignItems: 'center',
+        alignItems: 'center'
     },
     customizations: {
         display: 'flex', 
@@ -26,6 +26,7 @@ const useStyles = makeStyles({
         width: '100%'
     },
     productName: {
+        fontFamily: 'Permanent Marker',
         textTransform: 'capitalize'
     },
     minusButton : {
@@ -67,23 +68,23 @@ const CartItem = ({ cartItem, removeItemFromCart, incrementQuantity, decrementQu
                 <img className={classes.productImage} src={require(`../../assets/${title}.jpg`)} alt="" />
             </Grid>
             <Grid className={classes.gridItem} item xs={2} sm={2} md={2}>
-                <Typography className={classes.productName} variant="body1" align="center">{title}</Typography>
+                <Typography style={{fontFamily: 'Permanent Marker', color: '#707070'}} className={classes.productName} variant="body1" align="center">{title}</Typography>
             </Grid>
-            <Grid className={classes.gridItem} item xs={1} sm={1} md={1}>
+            <Grid className={classes.gridItem} item xs={2} sm={2} md={2}>
                 <IconButton className={classes.minusButton} onClick={e => decrementQuantity(_id)}>
                     <IndeterminateCheckBoxIcon className={classes.minusIcon} fontSize="large" />
                 </IconButton>
-                <Typography variant="body1" align="center">{quantity}</Typography>
+                <Typography style={{fontFamily: 'Permanent Marker', color: '#707070'}} variant="body1" align="center">{quantity}</Typography>
                 <IconButton className={classes.plusButton} onClick={e => incrementQuantity(_id)}>
                     <AddBoxIcon className={classes.plusIcon} fontSize="large" />
                 </IconButton>
             </Grid>
-            <Grid className={classes.customizations} item xs={4} sm={4} md={4}>
+            <Grid className={classes.customizations} item xs={3} sm={3} md={3}>
                 <div className={classes.gridItem}>
-                    {!!customization.added.length && <Typography variant="body1">Added: {customization.added.join(', ')}</Typography>}
+                    {!!customization.added.length && <Typography style={{fontFamily: 'Permanent Marker', color: 'green'}} variant="body1">Added: {customization.added.join(', ')}</Typography>}
                 </div>
                 <div className={classes.gridItem}>
-                    {!!customization.removed.length && <Typography variant="body1">Removed: {customization.removed.join(', ')}</Typography>}
+                    {!!customization.removed.length && <Typography style={{fontFamily: 'Permanent Marker', color: 'red'}} variant="body1">Removed: {customization.removed.join(', ')}</Typography>}
                 </div>
             </Grid>
             <Grid className={classes.gridItem} item xs={2} sm={2} md={2}>
@@ -92,7 +93,7 @@ const CartItem = ({ cartItem, removeItemFromCart, incrementQuantity, decrementQu
                 </IconButton>
             </Grid>
             <Grid className={classes.gridItem} item xs={2} sm={2} md={2}>
-                <CurrencyFormat value={quantity * price} displayType={'text'} prefix={'$'}/>
+                <CurrencyFormat style={{fontFamily: 'Permanent Marker', color: '#707070'}} value={quantity * price} displayType={'text'} prefix={'$'}/>
             </Grid>
         </Grid>
     )

@@ -9,11 +9,13 @@ import extractProductConsumer from '../../components/ExtractProductConsumer/Extr
 
 const styles = theme => ({
     Typography: {
+        background: '#fff',
         fontFamily: 'Permanent Marker',
         textTransform: 'uppercase',
         paddingTop: 20,
         paddingBottom: 20,
         borderBottom: '1px solid #999',
+        marginTop: '1px',
         marginBottom: '.75em'
     }
 })

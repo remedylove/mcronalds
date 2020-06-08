@@ -3,8 +3,9 @@ import { Grid, Typography, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({
     columnName: {
-        fontWeight: 'bold',
-        // background: '#f2f2f2',
+        fontFamily: 'Permanent Marker',
+        // fontWeight: 'bold',
+        fontSize: '1.5rem',
         borderTopLeftRadius: '3px',
         borderTopRightRadius: '3px'
     }
@@ -17,17 +18,17 @@ const CartTableHeader = () => {
             <Grid item xs={3} sm={3} md={3}>
                 <Typography className={classes.columnName} variant="body1">Product</Typography>
             </Grid>
-            <Grid item xs={1} sm={1} md={1}>
+            <Grid item xs={2} sm={2} md={2}>
                 <Typography className={classes.columnName} variant="body1">Quantity</Typography>
             </Grid>
-            <Grid item xs={4} sm={4} md={4}>
+            <Grid item xs={3} sm={3} md={3}>
                 <Typography className={classes.columnName} variant="body1">Customizations</Typography>
             </Grid>
             <Grid item xs={2} sm={2} md={2}>
                 <Typography className={classes.columnName} variant="body1">Remove</Typography>
             </Grid>
             <Grid item xs={2} sm={2} md={2}>
-                <Typography className={classes.columnName} variant="body1">Total</Typography>
+                <Typography className={classes.columnName} variant="body1">Price</Typography>
             </Grid>
         </Grid>
     )
