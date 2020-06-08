@@ -87,8 +87,12 @@ class ItemModal extends Component {
 }
 
 ItemModal.propTypes = {
+  classes: PropTypes.object, 
+  modal: PropTypes.bool, 
+  toggle: PropTypes.func, 
+  addProductToCart: PropTypes.func,
   title: PropTypes.string,
   ingredient: PropTypes.string,
 }
 
-export default extractProductConsumer(['addProductToCart'])(withStyles(styles)(ItemModal));
+export default extractProductConsumer(['addProductToCart'])(withStyles(styles)(ItemModal)); 

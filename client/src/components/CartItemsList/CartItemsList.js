@@ -4,6 +4,7 @@ import CartItem from '../../components/CartItem/CartItem';
 import CartTableHeader from '../CartTableHeader/CartTableHeader';
 import CartCosts from '../../components/CartCosts/CartCosts';
 import extractProductConsumer from '../ExtractProductConsumer/ExtractProductConsumer';
+import PropTypes from 'prop-types';
 
 const styles = {
     Paper: {
@@ -33,6 +34,12 @@ class CartItemsList extends Component {
             </Container>
         )
     }
+}
+
+CartItemsList.propTypes = {
+    cartItems: PropTypes.array, 
+    classes: PropTypes.object, 
+    addOrder: PropTypes.func
 }
 
 export default extractProductConsumer(['cartItems'])(withStyles(styles)(CartItemsList));

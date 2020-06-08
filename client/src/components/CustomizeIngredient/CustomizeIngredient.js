@@ -92,5 +92,5 @@ CustomizeIngredient.propTypes = {
     counter: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     ingredient: PropTypes.string,
 }
-export default withStyles(styles)(CustomizeIngredient);
+export default extractProductConsumer([''])(withStyles(styles)(CustomizeIngredient));
 

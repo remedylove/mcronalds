@@ -36,6 +36,7 @@ const RelatedProducts = ({ products }) => {
 }
 
 RelatedProducts.propTypes = {
+    products: PropTypes.array,
     key: PropTypes.string,
     product: PropTypes.object,
 }

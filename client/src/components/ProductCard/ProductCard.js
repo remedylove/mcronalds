@@ -119,6 +119,10 @@ class ProductCard extends Component {
 export default extractProductConsumer(['handleDetail', 'addItemToCart'])(withStyles(styles)(ProductCard));
 
 ProductCard.propTypes = {
+  classes: PropTypes.object, 
+  product: PropTypes.object, 
+  handleDetail: PropTypes.func, 
+  addItemToCart: PropTypes.func,
   _id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   title: PropTypes.string,
   image: PropTypes.string,

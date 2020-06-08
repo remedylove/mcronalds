@@ -29,6 +29,7 @@ class Cart extends Component {
 }
 
 Cart.propTypes = {
+    cartItems: PropTypes.array,
     amount: PropTypes.oneOf([PropTypes.number, PropTypes.string]),
 }
 

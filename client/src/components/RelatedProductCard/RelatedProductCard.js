@@ -8,6 +8,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { Link } from 'react-router-dom';
 import extractProductConsumer from '../../components/ExtractProductConsumer/ExtractProductConsumer';
 import PropTypes from 'prop-types';
+
 const styles = theme => ({
   CardHeader: {
     paddingBottom: '8px'
@@ -86,6 +87,9 @@ class RelatedProductCard extends Component {
 export default extractProductConsumer(['handleDetail'])(withStyles(styles)(RelatedProductCard));
 
 RelatedProductCard.propTypes = {
+  classes: PropTypes.object, 
+  product: PropTypes.object, 
+  handleDetail: PropTypes.func,
   title: PropTypes.string,
   image: PropTypes.string,
 }
