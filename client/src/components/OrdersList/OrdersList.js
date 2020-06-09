@@ -11,7 +11,7 @@ const OrdersList = ({ orders, isReady, handleOrder, cancelOrder }) => {
             ? orders.map(order => {
                 return <Order key={order._id} index={order.index} order={order} handleOrder={handleOrder} cancelOrder={cancelOrder} />
             })
-            : <Typography style={{fontFamily: "Permanent Marker"}} variant="h2">No orders to be handled.</Typography>}
+            : <Typography style={{fontFamily: 'Permanent Marker', margin: '.6em auto'}} variant="h2">No orders to be handled.</Typography>}
         </div>
         : <Loader />
     )

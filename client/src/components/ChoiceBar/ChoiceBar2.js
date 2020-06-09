@@ -1,177 +1,87 @@
 import React from 'react';
-import { fade, makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
-import Badge from '@material-ui/core/Badge';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import MoreIcon from '@material-ui/icons/MoreVert';
+import PropTypes from 'prop-types';
+import { Paper, Tabs, Tab, makeStyles } from '@material-ui/core';
+import TabContentItem from '../TabContentItem/TabContentItem';
+import All from '../../assets/categories/all.jpg';
+import Burgers from '../../assets/categories/burgers.jpg';
+import Combo from '../../assets/categories/combo_meals.jpg';
+import Beverages from '../../assets/categories/beverages.jpg';
+import Desserts from '../../assets/categories/desserts.jpg';
+import Salads from '../../assets/categories/salads.jpg';
+import Snacks from '../../assets/categories/snacks.jpg';
 
-const useStyles = makeStyles(theme => ({
-  grow: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
+const styles = {
+    Paper: {
+        minWidth: '300px',
+        maxWidth: '20%'
     },
-  },
-  search: {
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
+    Tabs: {
+        background: "#fff",
     },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(3),
-      width: 'auto',
+    Indicator: {
+        height: '100%',
+        color: 'green'
     },
-  },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  inputRoot: {
-    color: 'inherit',
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
-  },
-  sectionDesktop: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
-    },
-  },
-  sectionMobile: {
-    display: 'flex',
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
-  },
-}));
-
-export default function PrimarySearchAppBar() {
-  const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-  const handleProfileMenuOpen = event => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  };
-
-  const handleMobileMenuOpen = event => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
-
-  const menuId = 'primary-search-account-menu';
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-    </Menu>
-  );
-
-  const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <ShoppingCartIcon fontSize="large" style={{color: 'gray'}}/>
-          </Badge>
-        </IconButton>
-        <p>Cart</p>
-      </MenuItem>
-    </Menu>
-  );
-
-  return (
-    <div className={classes.grow}>
-      <AppBar position="static" style={{background: "#555"}}>
-        <Toolbar>
-          <Typography className={classes.title} variant="h4" align="left" >McRonald's</Typography>
-          {/* <Typography className={classes.subtitle} variant="h7" align="left">satisfy your hunger.</Typography> */}
-          <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={5} color="secondary">
-                <ShoppingCartIcon fontSize="normal"/>
-              </Badge>
-            </IconButton>
-          </div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </div>
-        </Toolbar>
-      </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
-    </div>
-  );
+    Tab: {
+        fontFamily: 'Permanent Marker',
+        maxWidth: '100%',
+        '&:hover': {
+            color: '#0275d8',
+            background: '#f2f2f2'
+        },
+        '&:focus': {
+            outline: 'none',
+        }
+    }
 }
+
+const useStyles = makeStyles(styles);
+
+const ChoiceBar2 = ({ categories, currentCategory, onSelect }) => {
+    const classes = useStyles();
+
+    const index = currentCategory
+        ? categories.findIndex(category => category === currentCategory) + 1
+        : 0
+
+    const onIndexSelect = (e, index) => {
+        onSelect(index === 0 ? '' :  categories[index - 1])
+    }
+
+    return (
+        <Paper className={classes.Paper}>
+            <Tabs
+                value={index}
+                onChange={onIndexSelect}
+                className={classes.Tabs}
+                TabIndicatorProps={{
+                    style: {
+                        height:"14.29%",
+                        width: '.25em'
+                    }
+                    }}
+                indicatorColor="primary"
+                textColor="primary"
+                variant="scrollable"
+                orientation="vertical"
+            >
+                <Tab className={classes.Tab} label={<TabContentItem image={All} categoryName='Full Menu' />} />
+                <Tab className={classes.Tab} label={<TabContentItem image={Burgers} categoryName='Burgers' />} />
+                <Tab className={classes.Tab} label={<TabContentItem image={Combo} categoryName='Combo Meals' />} />
+                <Tab className={classes.Tab} label={<TabContentItem image={Beverages} categoryName='Beverages' />} />
+                <Tab className={classes.Tab} label={<TabContentItem image={Desserts} categoryName='Desserts & Shakes' />} />
+                <Tab className={classes.Tab} label={<TabContentItem image={Snacks} categoryName='Snacks & Sides' />} />
+                <Tab className={classes.Tab} label={<TabContentItem image={Salads} categoryName='Salads' />} />
+                ))}
+            </Tabs>
+        </Paper> 
+    )
+}
+
+ChoiceBar2.propTypes = {
+    categories: PropTypes.array,
+    currentCategory: PropTypes.string,
+    onSelect: PropTypes.func    
+}
+
+export default ChoiceBar2;

@@ -6,16 +6,17 @@ import { categories } from '../../store';
 import Logo from '../../components/Logo/Logo';
 import MyAlert from '../../components/MyAlert/MyAlert';
 import extractProductConsumer from '../../components/ExtractProductConsumer/ExtractProductConsumer';
+import ChoiceBar2 from '../../components/ChoiceBar/ChoiceBar2';
 
 const styles = theme => ({
     Typography: {
         background: '#fff',
         fontFamily: 'Permanent Marker',
         fontWeight: 'bold',
-        padding: '.75em 0',
-        borderBottom: '1px solid #999',
+        padding: '.6em 0',
+        // borderBottom: '1px solid #999',
         marginTop: '1px',
-        marginBottom: '.75em'
+        // marginBottom: '.75em'
     }
 })
 
@@ -53,16 +54,25 @@ class CreateOrderPage extends Component  {
         return(
             <div>
                 <Logo cartCounter={cartCounter}/>
-                <ChoiceBar 
+                {/* <ChoiceBar 
                     categories={categories}
                     currentCategory={this.state.currentCategory}
                     onSelect={this.handleCategorySelected}
-                />
-                <Typography className={classes.Typography} variant="h4">
-                        {currentCategory ? currentCategory : 'all products'}
-                </Typography>
-                <MyAlert isOpen={alertOpen} color={color} toggle={this.onDismiss} alertMsg={alertMsg}/>
-                <ProductsList products={products} currentCategory={currentCategory} onAddition={this.onAddition} />
+                /> */}
+                <div style={{display: 'flex', width: '100%'}}>
+                    <ChoiceBar2 
+                        categories={categories}
+                        currentCategory={this.state.currentCategory}
+                        onSelect={this.handleCategorySelected}
+                    />
+                    <div style={{width: 'inherit'}}>
+                        <Typography className={classes.Typography} variant="h2">
+                            {currentCategory ? currentCategory : 'Full Menu'}
+                        </Typography>
+                        <MyAlert isOpen={alertOpen} color={color} toggle={this.onDismiss} alertMsg={alertMsg}/>
+                        <ProductsList products={products} currentCategory={currentCategory} onAddition={this.onAddition} />
+                    </div>
+                </div>
             </div>
 
         );

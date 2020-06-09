@@ -16,7 +16,7 @@ const styles = {
     cartStateText: {
         fontFamily: 'Permanent Marker',
         fontWeight: 'bold',
-        margin: '.25em auto'
+        margin: '.6em auto'
     }
 }
 

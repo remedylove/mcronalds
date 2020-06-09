@@ -7,6 +7,7 @@ import YouTubeIcon from '@material-ui/icons/YouTube';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import IconButton from '@material-ui/core/IconButton';
 import Cart from '../Cart/Cart';
+import { Link } from 'react-router-dom';
 
 const styles = {
     outerContainer: {
@@ -52,6 +53,14 @@ const styles = {
         marginRight: 10,
         paddingBottom: 0
     },
+    logoLink: {
+        color: 'inherit',
+        textDecoration: 'none',
+        '&:hover': {
+            textDecoration: 'none',
+            color: 'inherit'
+        }
+    },
     // cartContainer: {
     //     paddingLeft: 10,
     //     borderRadius: 10,
@@ -75,8 +84,10 @@ const Logo = ({ cartCounter }) =>    {
     return(
         <div className={classes.outerContainer}>
             <div className={classes.innerContainer}>
-                <Typography className={classes.title} variant="h4" align="left" >McRonald's</Typography>
-                <Typography className={classes.subtitle} variant="h6" align="left">satisfy your hunger.</Typography>
+                <Link className={classes.logoLink} to='/create-order'>
+                    <Typography className={classes.title} variant="h4" align="left" >McRonald's</Typography>
+                    <Typography className={classes.subtitle} variant="h6" align="left">satisfy your hunger.</Typography>
+                </Link>
             </div>
             <div className={classes.rowDirection}>
                 <div className={classes.Socials}>
