@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid, Typography, makeStyles } from '@material-ui/core';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles({
     orderedProductWrapper: {
@@ -47,6 +48,13 @@ const OrderedProduct = ({ title, removed, added, quantity }) => {
             </Grid>
         </div>
     )
+}
+
+OrderedProduct.propTypes = {
+    title: PropTypes.string, 
+    removed: PropTypes.array, 
+    added: PropTypes.array, 
+    quantity: PropTypes.number
 }
 
 export default OrderedProduct;

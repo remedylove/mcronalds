@@ -3,6 +3,7 @@ import { Paper, Typography, Grid, IconButton, makeStyles } from '@material-ui/co
 import DoneIcon from '@material-ui/icons/Done';
 import ClearIcon from '@material-ui/icons/Clear';
 import OrderedProduct from '../OrderedProduct/OrderedProduct';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles({
     paperOrder: {
@@ -113,6 +114,12 @@ const Order = ({ index, order, handleOrder, cancelOrder }) => {
             </Paper>
         </div>
     );
+}
+
+Order.propTypes = {
+    order: PropTypes.object, 
+    handleOrder: PropTypes.func, 
+    cancelOrder: PropTypes.func
 }
 
 export default Order;

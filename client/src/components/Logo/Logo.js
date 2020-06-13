@@ -7,6 +7,7 @@ import YouTubeIcon from '@material-ui/icons/YouTube';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import IconButton from '@material-ui/core/IconButton';
 import Cart from '../Cart/Cart';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const styles = {
@@ -117,6 +118,10 @@ const Logo = ({ cartCounter }) =>    {
             </div>
         </div>
     );
+}
+
+Logo.propTypes = {
+    cartCounter: PropTypes.number
 }
 
 export default Logo;

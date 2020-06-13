@@ -100,6 +100,10 @@ const CartItem = ({ cartItem, removeItemFromCart, incrementQuantity, decrementQu
 }
 
 CartItem.propTypes = {
+    cartItem: PropTypes.object, 
+    removeItemFromCart: PropTypes.func, 
+    incrementQuantity: PropTypes.func, 
+    decrementQuantity: PropTypes.func,
     _id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     title: PropTypes.string,
     price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),

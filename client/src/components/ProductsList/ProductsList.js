@@ -37,6 +37,8 @@ const ProductsList = ({ products, currentCategory, onAddition }) => {
 }
 
 ProductsList.propTypes = {
+    product: PropTypes.object,
+    currentCategory: PropTypes.string,
     key: PropTypes.string,
     product: PropTypes.string,
 }

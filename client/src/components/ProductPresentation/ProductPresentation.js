@@ -52,6 +52,7 @@ const ProductPresentation = ({ detailProduct }) => {
     );
 }
 ProductPresentation.propTypes = {
+    detailProduct: PropTypes.object,
     title: PropTypes.string,
     description: PropTypes.string,
     calories: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
