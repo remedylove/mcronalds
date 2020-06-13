@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 const styles = {
     Typography: {
+        fontFamily: 'Permanent Marker',
         fontWeight: 'bold'
     },
     Grid: {
@@ -31,7 +32,7 @@ const IngredientsList = ({ title, ingredients }) => {
                         return(
                             <Grid key={ingredient} item xs={6} sm={4} md={3} lg={2}>
                                 <img src={require(`../../assets/ingredients/${ingredient}.png`)} alt="ingredient-img" />
-                                <Typography variant="h6">{ingredient}</Typography>
+                                <Typography style={{fontFamily: 'Permanent Marker'}} variant="h6">{ingredient}</Typography>
                             </Grid>
                         )
                     })}

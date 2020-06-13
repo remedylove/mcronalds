@@ -12,7 +12,16 @@ const useStyles = makeStyles({
         padding: '.25em 2.5em'
     },
     productGridItem: {
-        fontSize: '.75rem'
+        fontFamily: 'Permanent Marker',
+        color: '#777'
+    },
+    customizationRemoved: {
+        fontFamily: 'Permanent Marker',
+        color: 'red'
+    },
+    customizationAdded: {
+        fontFamily: 'Permanent Marker',
+        color: 'green'
     },
     productName:    {
         textTransform: 'capitalize',
@@ -27,11 +36,11 @@ const OrderedProduct = ({ title, removed, added, quantity }) => {
         <div className={classes.orderedProductWrapper}>
             <Grid className={classes.productGridContainer} container>
                 <Grid item md={3}>
-                    <Typography className={`${classes.productName} ${classes.productGridItem}`}>{title}</Typography>
+                    <Typography className={`${classes.productGridItem} ${classes.productGridItem}`}>{title}</Typography>
                 </Grid>
                 <Grid item md={6}>
-                    {!!removed.length && <Typography className={classes.productGridItem}>Removed: {removed.join(", ")}</Typography>}
-                    {!!added.length && <Typography className={classes.productGridItem}>Added: {added.join(", ")}</Typography>}
+                    {!!removed.length && <Typography className={classes.customizationRemoved}>Removed: {removed.join(", ")}</Typography>}
+                    {!!added.length && <Typography className={classes.customizationAdded}>Added: {added.join(", ")}</Typography>}
                 </Grid>
                 <Grid item md={3}>
                     <Typography className={classes.productGridItem}>{quantity}</Typography>

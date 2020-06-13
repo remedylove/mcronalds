@@ -22,11 +22,11 @@ const styles = theme => ({
     },
   },
   Typography: {
+    fontFamily: 'Permanent Marker',
     cursor: 'pointer',
     textTransform: 'capitalize'
   },
   Link: {
-    // // textDecoration: 'none',
     color: 'inherit',
     '&:hover':  {
       textDecoration: 'none',
@@ -52,7 +52,7 @@ class RelatedProductCard extends Component {
 
   render()  {
     const { classes, product, handleDetail } = this.props;
-    const { title, image } = product;
+    const { title, price } = product;
 
     return (
       <React.Fragment>
@@ -61,7 +61,7 @@ class RelatedProductCard extends Component {
             className={classes.CardHeader}
             align="left"
             title={<Link className={classes.Link} to={`/product-details/${title}`}><Typography className={classes.Typography} variant="h6">{title}</Typography></Link>}
-            subheader={<CurrencyFormat value={4.99} displayType={'text'} prefix={'$'}/>}
+            subheader={<CurrencyFormat style={{fontFamily: 'Permanent Marker'}} value={price} displayType={'text'} prefix={'$'}/>}
           />
           <div 
             className={classes.mediaWrapper}

@@ -20,6 +20,7 @@ const styles = theme =>  ({
         alignItems: 'center',
     },
     button: {
+        fontFamily: 'Permanent Marker',
         margin: '10px',
         padding: '5px 0',
     },
@@ -30,7 +31,13 @@ const styles = theme =>  ({
         alignItems: 'center'
     },
     ingredient: {
+        fontFamily: 'Permanent Marker',
+        color: '#444',
         textTransform: 'capitalize'
+    },
+    counter: {
+        fontFamily: 'Permanent Marker',
+        minWidth: '1em'
     }
 })
 
@@ -76,9 +83,9 @@ class CustomizeIngredient extends Component {
                         <div className={classes.innerContainer}>
                             <Typography className={classes.ingredient}>{ingredient}</Typography>
                             <div className={classes.counterContainer}>
-                                <Button variant="outlined" className={classes.button} onClick={e => this.decrement(ingredient)}>-</Button>
-                                <Typography>{counter}</Typography>
-                                <Button variant="outlined" className={classes.button} onClick={e => this.increment(ingredient)}>+</Button>
+                                <Button variant="contained" className={classes.button} onClick={e => this.decrement(ingredient)}>-</Button>
+                                <Typography className={classes.counter} align="center">{counter}</Typography>
+                                <Button variant="contained" className={classes.button} onClick={e => this.increment(ingredient)}>+</Button>
                             </div>
                         </div>
                     </Grid>

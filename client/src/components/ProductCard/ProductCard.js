@@ -19,14 +19,15 @@ const styles = theme => ({
   },
   card: {
     border: '1px solid #ddd',
-    background: 'transparent',
+    background: '#fff',
     transition: '.2s',
     '&:hover':  {
       transform: 'scale(1.05)'
     },
   },
   Typography: {
-    cursor: 'pointer'
+    cursor: 'pointer',
+    fontFamily: 'Permanent Marker'
   },
   Link: {
     // // textDecoration: 'none',
@@ -47,8 +48,12 @@ const styles = theme => ({
     cursor: 'pointer'
   },
   add: {
-    color: '#0275d8',
+    color: '#3f50b5',
   },
+  button: {
+    fontFamily: 'Permanent Marker',
+    background: '#3f50b5'
+  }
 });
 
 
@@ -67,7 +72,7 @@ class ProductCard extends Component {
 }
 
   render()  {
-    const { classes, product, handleDetail, addItemToCart } = this.props;
+    const { classes, product, handleDetail, addItemToCart, onAddition } = this.props;
     const { _id, title, imageSrc, price } = product;
 
     return (
@@ -76,13 +81,13 @@ class ProductCard extends Component {
           <CardHeader
             className={classes.CardHeader}
             action={
-              <IconButton aria-label="settings" onClick={e => addItemToCart(_id)}>
+              <IconButton aria-label="settings" onClick={e => {addItemToCart(_id); onAddition('Product');}}>
                 <AddCircleIcon className={classes.add} fontSize="large"/>
               </IconButton>
             }
             align="left"
             title={<Link className={classes.Link} to={`/product-details/${title.toLowerCase()}`}><Typography className={classes.Typography} variant="h6">{title}</Typography></Link>}
-            subheader={<CurrencyFormat value={price} displayType={'text'} prefix={'$'}/>}
+            subheader={<CurrencyFormat style={{fontFamily: 'Permanent Marker', fontSize: '1.25rem'}} value={price} displayType={'text'} prefix={'$'}/>}
           />
           <div 
             className={classes.mediaWrapper}
@@ -98,9 +103,10 @@ class ProductCard extends Component {
               />
             </Link>
           </div>
-          <CardContent>
+          <CardContent style={{paddingBottom: '16px'}}>
             <Button 
-              variant="outlined" 
+              className={classes.button}
+              variant="contained" 
               color="primary" 
               align="left"
               onClick={this.toggle}  
@@ -109,7 +115,7 @@ class ProductCard extends Component {
             </Button>
           </CardContent>
         </Card>
-        {this.state.modal && <ItemModal product={product} modal={this.state.modal} toggle={this.toggle} />}
+        {this.state.modal && <ItemModal product={product} modal={this.state.modal} toggle={this.toggle} onAddition={onAddition} />}
       </React.Fragment>
     );
   }

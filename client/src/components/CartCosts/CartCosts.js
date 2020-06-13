@@ -8,10 +8,6 @@ const useStyles = makeStyles({
         display: 'flex',
         flexDirection: 'column',
         padding: '1em'
-        // justifyContent: 'flex-end',
-            // border: '1px solid #f2f2f2',
-            // borderRadius: '5px',
-        // height: '100%'
     },
     costsRow: {
         display: 'flex'
@@ -31,12 +27,22 @@ const useStyles = makeStyles({
     }
 });
 
-const CartCosts = ({ addOrder, cartItems }) => {
-    let total = 0;
-    cartItems.map(cartItem => {
-        const { quantity, price } = cartItem;
-        total += quantity * price;
-    })
+const CartCosts = ({ addOrder, cartItems, clearCartItems, toggle }) => {
+    
+    const getTotal = () => {
+        let total = 0;
+        cartItems.map(cartItem => {
+            const { quantity, price } = cartItem;
+            total += quantity * price;
+        });
+        return total;
+    }
+
+    const finishOrder = () => {
+        toggle(); 
+        addOrder(cartItems); 
+        clearCartItems();
+    }
 
     const classes = useStyles();
 
@@ -44,24 +50,24 @@ const CartCosts = ({ addOrder, cartItems }) => {
         <Paper className={classes.container} square>
             <div className={classes.costsRow}>
                 <Typography className={classes.totalText} variant="h5" align="left">Tax: </Typography>
-                <Typography className={classes.totalText} variant="h5" align="right">${(total * 0.12).toFixed(2)}</Typography>
+                <Typography className={classes.totalText} variant="h5" align="right">${(getTotal() * 0.12).toFixed(2)}</Typography>
             </div>
             <div className={classes.costsRow}>
                 <Typography className={classes.totalText} variant="h5" align="left">Total: </Typography>
-                <Typography className={classes.totalText} variant="h5" align="right">${(total).toFixed(2)}</Typography>
+                <Typography className={classes.totalText} variant="h5" align="right">${(getTotal()).toFixed(2)}</Typography>
             </div>
             <Button 
                 className={classes.button} 
                 variant="contained" 
                 color="primary" 
-                onClick={e => addOrder(cartItems)}
+                onClick={e => finishOrder()}
             >ORDER AND PAY
             </Button>
         </Paper>
     )
 }
 
-export default extractProductConsumer(['cartItems'])(CartCosts);
+export default extractProductConsumer(['cartItems', 'clearCartItems'])(CartCosts);
 
 CartCosts.propTypes = {
     addOrder: PropTypes.func,

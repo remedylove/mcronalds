@@ -25,9 +25,6 @@ class ProductProvider extends Component {
         const product = this.state.products.find(item => item.title.toLowerCase() === title.toLowerCase());
                 
         return product;
-        // if(!product) {
-        //     return <Redirect to="/404" />
-        // }
     }
 
     getItem = id => {
@@ -107,19 +104,28 @@ class ProductProvider extends Component {
     addProductToCart = product => {
         const { cartItems } = this.state;
         const { _id, title, customization, price, quantity } = product;
-        const orderProduct = {
-            _id,
-            title,
-            customization,
-            price,
-            quantity
-        };
-        orderProduct.quantity = 1;
-        cartItems.push(orderProduct);
-        localStorage.setItem('cartItems', JSON.stringify(cartItems));
-        this.setState({
-            cartItems: this.getCartItems()
-        })
+        const isInCartYet = cartItems.find(item => item._id === _id);
+        if(isInCartYet) {
+            isInCartYet.quantity += 1;
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            this.setState({
+                cartItems: this.getCartItems()
+            });
+        } else {
+            const orderProduct = {
+                _id,
+                title,
+                customization,
+                price,
+                quantity
+            };
+            orderProduct.quantity = 1;
+            cartItems.push(orderProduct);
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            this.setState({
+                cartItems: this.getCartItems()
+            })
+        }
     }
 
     removeItemFromCart = id => {
@@ -136,6 +142,13 @@ class ProductProvider extends Component {
      
         return cartItems;
     }
+    
+    clearCartItems = () => {
+        localStorage.clear();
+        this.setState({
+            cartItems: this.getCartItems()
+        });
+    }
 
     render() {
         const { isReady } = this.state;
@@ -148,7 +161,8 @@ class ProductProvider extends Component {
                 addProductToCart: this.addProductToCart,
                 incrementQuantity: this.incrementQuantity,
                 decrementQuantity: this.decrementQuantity,
-                getItemToDetails: this.getItemToDetails
+                getItemToDetails: this.getItemToDetails,
+                clearCartItems: this.clearCartItems
             }}>
                 {this.props.children}
             </ProductContext.Provider>

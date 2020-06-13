@@ -7,8 +7,12 @@ const useStyles = makeStyles({
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center', 
-      height: '100vh', 
+      height: '80vh', 
       width: '100%', 
+    },
+    loaderText: {
+        fontFamily: 'Permanent Marker',
+        marginTop: '1em'
     }
 });
 
@@ -19,7 +23,7 @@ const Loader = () => {
     return (
         <div className={classes.loaderWrapper}>
             <CircularProgress />
-            <Typography>Loading...</Typography>
+            <Typography className={classes.loaderText}>Loading...</Typography>
         </div>
     )
 }

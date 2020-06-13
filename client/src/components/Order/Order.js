@@ -9,18 +9,21 @@ const useStyles = makeStyles({
     paperOrder: {
         width: '50%', 
         margin: '1em auto 1em', 
-        paddingBottom: '2.5em'
+        paddingBottom: '2.25em',
+        borderRadius: 20
     },
     orderNumber: {
         fontFamily: 'Permanent Marker',
-        color: '#fff',
-        background: '#0275d8',
-        padding: '.25em 1em', 
+        // color: '#3f50b5',
+        color: '#000',
+        padding: '.75em 1em', 
     },
     tableGridContainer: {
-        padding: '2.5em 2.5em 0'
+        padding: '0 2.5em'
     },
     tableGridItem: {
+        fontFamily: 'Permanent Marker',
+        fontSize: '1.5rem',
         fontWeight: 'bold'
     },
     actionsWrapper: {
@@ -31,12 +34,15 @@ const useStyles = makeStyles({
     actionsContainer: {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: '1em'
     },
     actionsHeaderText: {
-        fontSize: '.75rem', 
+        fontFamily: 'Permanent Marker',
+        // fontSize: '.75rem', 
         fontWeight: 'bold', 
-        color: '#707070',
+        // color: '#707070',
         marginBottom: '1em'
     },
     iconsWrapper: {
@@ -45,9 +51,10 @@ const useStyles = makeStyles({
         padding: '0 4em',
     },
     doneIcon: {
-        color: 'green',
-        border: '1px solid green',
-        padding: '8px',
+        background: 'green',
+        color: '#fff',
+        // border: '1px solid green',
+        padding: '.5em',
         margin: '0 .25em',
         '&:hover':    {
             background: 'green',
@@ -55,9 +62,10 @@ const useStyles = makeStyles({
         }
     },
     clearIcon: {
-        color: 'red',
-        border: '1px solid red',
-        padding: '8px',
+        background: 'red',
+        color: '#fff',
+        // border: '1px solid red',
+        padding: '.5em',
         margin: '0 .25em',
         '&:hover':    {
             background: 'red',
@@ -73,8 +81,8 @@ const Order = ({ index, order, handleOrder, cancelOrder }) => {
 
     return (
         <div>
-            <Paper square className={classes.paperOrder}>
-                <Typography align="left" className={classes.orderNumber}>Order #{index}</Typography>
+            <Paper className={classes.paperOrder}>
+                <Typography variant="h3" align="left" className={classes.orderNumber}>Order #{index}</Typography>
                 <Grid className={classes.tableGridContainer} container>
                     <Grid item md={3}>
                         <Typography className={classes.tableGridItem}>Product</Typography>
@@ -86,14 +94,12 @@ const Order = ({ index, order, handleOrder, cancelOrder }) => {
                         <Typography className={classes.tableGridItem}>Quantity</Typography>
                     </Grid>
                 </Grid>
-                {products.map(product => {
-                    const { _id, title, customization, quantity } = product;
+                {products.map(({ _id, title, customization, quantity }) => {
                     const { removed, added } = customization;
                     return (
                         <OrderedProduct key={_id} title={title} removed={removed} added={added} quantity={quantity} />
                     );
                 })}
-                <div className={classes. actionsWrapper}>
                     <div className={classes.actionsContainer}>
                         <Typography className={classes.actionsHeaderText} variant="body2">ACTIONS</Typography>
                         <div className={classes.iconsWrapper}>
@@ -105,7 +111,6 @@ const Order = ({ index, order, handleOrder, cancelOrder }) => {
                             </IconButton>
                         </div>
                     </div>
-                </div>
             </Paper>
         </div>
     );
