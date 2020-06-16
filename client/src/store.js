@@ -1,3 +1,3 @@
 export const categories = [
-    'burgers', 'combo meals', 'beverages', 'desserts & shakes', 'snacks & sides', 'salads'
+    'burgers', 'combo meals', 'mccafe', 'desserts & shakes', 'snacks & sides', 'salads'
 ];

@@ -12,11 +12,15 @@ import { Link } from 'react-router-dom';
 
 const styles = {
     outerContainer: {
+        position: 'sticky',
+        top: 0,
         display: 'flex',
         justifyContent: 'space-between',
         marginBottom: '3px',
         background: 'white',
         boxShadow: '0 0  3px 1px #ccc',
+        opacity: .9,
+        zIndex: 99
     },
     innerContainer: {
         display: 'inline-flex',
@@ -79,7 +83,7 @@ const styles = {
 
 const useStyles = makeStyles(styles);
 
-const Logo = ({ cartCounter }) =>    {
+const Logo = () =>    {
     const classes = useStyles();
 
     return(

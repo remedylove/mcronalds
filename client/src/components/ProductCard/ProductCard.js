@@ -73,7 +73,7 @@ class ProductCard extends Component {
 
   render()  {
     const { classes, product, handleDetail, addItemToCart, onAddition } = this.props;
-    const { _id, title, imageSrc, price } = product;
+    const { _id, title, imageSrc, price, ingredients } = product;
 
     return (
       <React.Fragment>
@@ -109,7 +109,8 @@ class ProductCard extends Component {
               variant="contained" 
               color="primary" 
               align="left"
-              onClick={this.toggle}  
+              onClick={this.toggle}
+              disabled={ingredients.length === 0}
             >
               CUSTOMIZE
             </Button>

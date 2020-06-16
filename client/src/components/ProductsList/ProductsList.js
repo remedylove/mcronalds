@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, makeStyles } from '@material-ui/core';
+import { Grid, makeStyles, Fade } from '@material-ui/core';
 import ProductCard from '../ProductCard/ProductCard';
 import PropTypes from 'prop-types';
 const styles = {
@@ -24,11 +24,13 @@ const ProductsList = ({ products, currentCategory, onAddition }) => {
     return (
         <div className={classes.Container}>
             <Grid className={classes.GridContainer} container justify="center" spacing={3}>
-                {products.map(product => (
+                {products.map((product, index) => (
                     !currentCategory || product.category === currentCategory
-                    ?   <Grid key={product.id} item xs={10} sm={5} md={3}>
-                            <ProductCard key={product.id} product={product} onAddition={onAddition} />
-                        </ Grid>
+                    ?   <Fade key={product.id} in timeout={1000}>
+                            <Grid key={product.id} item xs={10} sm={5} md={3}>
+                                <ProductCard key={product.id} product={product} onAddition={onAddition} />
+                            </ Grid>
+                        </Fade>
                     : null
                 ))}
             </Grid>

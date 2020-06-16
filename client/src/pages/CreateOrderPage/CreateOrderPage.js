@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Typography, withStyles, CircularProgress } from '@material-ui/core';
+import { Typography, withStyles } from '@material-ui/core';
 import ProductsList from '../../components/ProductsList/ProductsList';
-import ChoiceBar from '../../components/ChoiceBar/ChoiceBar';
 import { categories } from '../../store';
 import Logo from '../../components/Logo/Logo';
 import MyAlert from '../../components/MyAlert/MyAlert';
@@ -65,6 +64,7 @@ class CreateOrderPage extends Component  {
                         currentCategory={this.state.currentCategory}
                         onSelect={this.handleCategorySelected}
                     />
+                    <div style={{minWidth: '300px', maxWidth: '20%',}}></div>
                     <div style={{width: 'inherit'}}>
                         <Typography className={classes.Typography} variant="h2">
                             {currentCategory ? currentCategory : 'Full Menu'}

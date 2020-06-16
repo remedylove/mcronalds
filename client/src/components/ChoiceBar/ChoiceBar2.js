@@ -5,15 +5,17 @@ import TabContentItem from '../TabContentItem/TabContentItem';
 import All from '../../assets/categories/all.jpg';
 import Burgers from '../../assets/categories/burgers.jpg';
 import Combo from '../../assets/categories/combo_meals.jpg';
-import Beverages from '../../assets/categories/beverages.jpg';
+import McCafe from '../../assets/categories/mccafe.jpg';
 import Desserts from '../../assets/categories/desserts.jpg';
 import Salads from '../../assets/categories/salads.jpg';
 import Snacks from '../../assets/categories/snacks.jpg';
 
 const styles = {
     Paper: {
+        position: 'fixed',
         minWidth: '300px',
-        maxWidth: '20%'
+        maxWidth: '20%',
+        maxHeight: '88vh'
     },
     Tabs: {
         background: "#fff",
@@ -68,7 +70,7 @@ const ChoiceBar2 = ({ categories, currentCategory, onSelect }) => {
                 <Tab className={classes.Tab} label={<TabContentItem image={All} categoryName='Full Menu' />} />
                 <Tab className={classes.Tab} label={<TabContentItem image={Burgers} categoryName='Burgers' />} />
                 <Tab className={classes.Tab} label={<TabContentItem image={Combo} categoryName='Combo Meals' />} />
-                <Tab className={classes.Tab} label={<TabContentItem image={Beverages} categoryName='Beverages' />} />
+                <Tab className={classes.Tab} label={<TabContentItem image={McCafe} categoryName='McCafe' />} />
                 <Tab className={classes.Tab} label={<TabContentItem image={Desserts} categoryName='Desserts & Shakes' />} />
                 <Tab className={classes.Tab} label={<TabContentItem image={Snacks} categoryName='Snacks & Sides' />} />
                 <Tab className={classes.Tab} label={<TabContentItem image={Salads} categoryName='Salads' />} />
